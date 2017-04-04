@@ -59,7 +59,7 @@ export default class Deal extends Component {
       .then((res)=>{
         let i,data = res.data.result;
 
-        if(data.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"){
           for(i=0;i<data.length;i++){
             __this.state.option.push(<Select.Option>data[i].id+"-"+data[i].name</Select.Option>)
           }
