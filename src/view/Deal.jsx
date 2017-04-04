@@ -28,7 +28,7 @@ export default class Deal extends Component {
 
 
   componentDidMount(){
-    let __this = this
+    let __this = this;
 
     axios.get("/uni/allUniversity")
       .then((res)=>{
@@ -48,15 +48,15 @@ export default class Deal extends Component {
   }
 
   handleChange(value){
-    let __this = this;
-
-    __this.setState({
+    this.setState({
       id: value.split("-")[0]
     })
 
   }
 
   handleSearch(){
+    let __this = this
+
     axios.get("market/getDealSelective?id="+this.state.id+
       "&fromtime="+this.state.start +
       "&untiltime="+this.state.end +
@@ -97,10 +97,10 @@ export default class Deal extends Component {
         <Form.Item label="结束时间">
           <DatePicker onChange={this.handleEnd} format={dateFormat} required/>
         </Form.Item>
-        <Button onClick={this.handleSearch}>查询</Button>
-        <Select style={{minWidth:"10rem"}} onSelect={this.handleChange} >
+        <Select style={{minWidth:"10rem"}} onSelect={this.handleChange.bind(this)} >
           {this.state.option}
         </Select>
+        <Button onClick={this.handleSearch.bind(this)}>查询</Button>
         <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )

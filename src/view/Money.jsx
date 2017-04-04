@@ -50,7 +50,11 @@ export default class School extends Component {
   }
 
   componentDidMount(){
-    let __this = this,i;
+    let __this = this,i,state = {
+      HANDLING:"处理中",
+      DONE:"已处理",
+      REFUSED:"已拒绝"
+    };
 
     axios.get("/account/tradeList")
       .then(function (res) {
@@ -58,6 +62,7 @@ export default class School extends Component {
           for(i=0;i<res.data.result.length;i++){
             if(res.data.result[i].tradestate === "HANDLING")
               res.data.result[i].approve = (<button onClick={() => __this.handleApprove(res.data.result[i].id)}>提现完成</button>)
+            res.data.result[i].tradestate = state[res.data.result[i].tradestate]
           }
 
           __this.setState({
