@@ -87,6 +87,7 @@ export default class Deal extends Component {
   }
 
   render() {
+    const dateFormat = 'YYYY-MM-DD';
 
     return (
       <div>
