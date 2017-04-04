@@ -43,9 +43,8 @@ export default class Layout extends React.Component {
       .then((res)=>{
         console.log(res);
         if(res.data.code === '401'){
-          location.hash = '/'
-        }else
-          __this.result = res.data.result;
+          //location.hash = '/'
+        }
       })
       .catch(function (error) {
 

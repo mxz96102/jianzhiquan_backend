@@ -27,7 +27,7 @@ export default class SchoolAdd extends Component {
       "&place="+getByName("place")+
       "&uniid="+getByName("uniid"))
       .then((res)=>{
-        if(res.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"){
           alert("提交成功");
           location.reload();
         } else {

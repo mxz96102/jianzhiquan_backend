@@ -21,7 +21,7 @@ export default class SchoolAdd extends Component {
     axios.get("/party/createParty?name="+getByName("name")+
       "&grade"+getName("grade"))
       .then((res)=>{
-        if(res.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"){
           alert("提交成功");
           location.reload();
         }

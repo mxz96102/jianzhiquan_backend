@@ -17,7 +17,7 @@ export default class SchoolAdd extends Component {
 
     axios.get("/uni/createUniversity?uniname="+getByName("uniname")+"&address="+getByName("address")+"&level="+this.state.opt)
       .then((res)=>{
-        if(res.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"){
           alert("提交成功");
           location.reload();
         }
