@@ -34,7 +34,7 @@ export default class SchoolAdd extends Component {
           alert("请检查信息，重新提交")
         }
       })
-      .error((error)=>{
+      .catch((error)=>{
         alert("通信错误")
       })
   }

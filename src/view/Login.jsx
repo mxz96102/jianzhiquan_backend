@@ -14,7 +14,7 @@ export default class Login extends React.Component {
     axios.get('auth/login?'+'phonenum='+username.value+'&credential='+passwd.value,{})
       .then(function (response) {
         let res = response.data;
-        if(res.data.msg === 'SUCCESS'){
+        if(res.msg === 'SUCCESS'){
           location.hash='#/school'
         } else {
           alert("请检查手机号和密码")
