@@ -48,7 +48,7 @@ export default class Layout extends React.Component {
           __this.result = res.data.result;
       })
       .catch(function (error) {
-        alert("通信错误")
+
       });
   }
 

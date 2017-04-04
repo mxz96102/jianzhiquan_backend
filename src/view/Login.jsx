@@ -15,7 +15,7 @@ export default class Login extends React.Component {
       .then(function (response) {
         let res = response.data;
         if(res.msg === 'SUCCESS'){
-          location.hash='#/center'
+          location.hash='#/school'
         } else {
           alert("请检查手机号和密码")
         }

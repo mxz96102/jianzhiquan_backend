@@ -50,7 +50,21 @@ export default class School extends Component {
   }
 
   componentDidMount(){
+    let __this = this,i;
 
+    axios.get("/account/tradeList")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            if(res.data.result[i].tradestate === "HANDLING")
+              res.data.result[i].approve = (<button onClick={() => __this.handleApprove(res.data.result[i].id)}>提现完成</button>)
+          }
+
+          __this.setState({
+            data : res.data.result
+          })
+        }
+      })
   }
 
   render () {

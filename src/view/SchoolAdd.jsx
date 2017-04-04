@@ -22,7 +22,7 @@ export default class SchoolAdd extends Component {
           location.reload();
         }
       })
-      .error((error)=>{
+      .catch((error)=>{
         alert("通信错误")
       })
   }

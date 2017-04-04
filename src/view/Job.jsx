@@ -9,26 +9,22 @@ export default class Job extends Component {
     super();
     this.state={
       columns : [{
-        title: '学校名称',
-        dataIndex: 'uniname',
-        key: 'uniname',
+        title: '兼职名称',
+        dataIndex: 'jobname',
+        key: 'jobname',
       }, {
-        title: '归属地',
-        dataIndex: 'address',
-        key: 'address',
+        title: '最大人数',
+        dataIndex: 'workernummax',
+        key: 'workernummax',
       }, {
-        title: '学校层次',
-        dataIndex: 'level',
-        key: 'level',
+        title: '兼职状态',
+        dataIndex: 'jobstate',
+        key: 'jobstate',
       }, {
-        title: '院系数',
-        dataIndex: 'colleagenum',
-        key: 'colleagenum',
-      }, {
-        title: '班级数',
-        dataIndex: 'buildnum',
-        key: 'buildnum',
-      },],
+        title: '兼职要求',
+        dataIndex: 'request',
+        key: 'request',
+      }],
       data:[
         {uniname:"Loading"}
       ]
@@ -37,7 +33,16 @@ export default class Job extends Component {
 
 
   componentDidMount(){
+    let __this = this
 
+    axios.get("/job/getAllJob")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.setState({
+            data : res.data.result
+          })
+        }
+      })
   }
 
   render () {

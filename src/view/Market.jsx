@@ -10,17 +10,21 @@ export default class Market extends Component {
     this.state={
       columns : [{
         title: '名称',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'marketname',
+        key: 'marketname',
       }, {
         title: '序号',
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: '圈主id',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
-      }],
+        title: '学院',
+        dataIndex: 'colleage',
+        key: 'colleage',
+      }, {
+        title: '收益',
+        dataIndex: 'revenue',
+        key: 'revenue',
+      },],
       data:[
         {name:"Loading"}
       ]
@@ -29,7 +33,16 @@ export default class Market extends Component {
 
 
   componentDidMount(){
+    let __this = this
 
+    axios.get("/market/getAllMarket")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.setState({
+            data : res.data.result
+          })
+        }
+      })
   }
 
   render () {

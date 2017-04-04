@@ -29,7 +29,16 @@ export default class Market extends Component {
 
 
   componentDidMount(){
+    let __this = this
 
+    axios.get("/party/allParty")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.setState({
+            data : res.data.result
+          })
+        }
+      })
   }
 
   render () {

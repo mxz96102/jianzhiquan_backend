@@ -27,7 +27,16 @@ export default class Deal extends Component {
 
 
   componentDidMount(){
+    let __this = this
 
+    axios.get("/market/getDealSelective")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          __this.setState({
+            data : res.data.result
+          })
+        }
+      })
   }
 
   handleChange(value){
