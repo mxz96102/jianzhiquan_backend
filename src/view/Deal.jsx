@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Select } from 'antd'
+import{ Table, Select, DatePicker, Form } from 'antd'
 import axios from "../axios";
 
 export default class Deal extends Component {
@@ -19,22 +19,16 @@ export default class Deal extends Component {
       data: [
         {uniname: "Loading"}
       ],
-      option: []
+      option: [],
+      start:"",
+      end:"",
+      id:""
     }
   }
 
 
   componentDidMount(){
     let __this = this
-
-    axios.get("/market/getDealSelective")
-      .then(function (res) {
-        if(res.data.msg === "SUCCESS"){
-          __this.setState({
-            data : res.data.result
-          })
-        }
-      })
 
     axios.get("/uni/allUniversity")
       .then((res)=>{
@@ -56,21 +50,53 @@ export default class Deal extends Component {
   handleChange(value){
     let __this = this;
 
-    axios.get("market/getDealSelective?id="+value.split("-")[0])
+    __this.setState({
+      id: value.split("-")[0]
+    })
+
+  }
+
+  handleSearch(){
+    axios.get("market/getDealSelective?id="+this.state.id+
+      "&fromtime="+this.state.start +
+      "&untiltime="+this.state.end +
+        "&uniid="+ this.state.id
+    )
       .then((res)=>{
         if(res.data.msg === "SUCCESS"){
           __this.setState({
-            data: res.data.result
+            data : res.data.result
           })
         }
       })
   }
 
-  render() {
+  handleStart = (value) => {
+    let date = new Date(value);
+    this.setState({
+      start : date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() +" 00:00:00"
+    })
+  }
 
+  handleEnd = (value) => {
+    let date = new Date(value);
+
+    this.setState({
+      end : date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() +" 00:00:00"
+    })
+  }
+
+  render() {
 
     return (
       <div>
+        <Form.Item label="开始时间">
+          <DatePicker onChange={this.handleStart} format={dateFormat} required/>
+        </Form.Item>
+        <Form.Item label="结束时间">
+          <DatePicker onChange={this.handleEnd} format={dateFormat} required/>
+        </Form.Item>
+        <Button onClick={this.handleSearch}>查询</Button>
         <Select style={{minWidth:"10rem"}} onSelect={this.handleChange} >
           {this.state.option}
         </Select>
