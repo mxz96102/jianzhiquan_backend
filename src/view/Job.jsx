@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
 import{ Table } from 'antd'
-
+import axios from "../axios";
 
 
 export default class Job extends Component {
