@@ -56,7 +56,7 @@ export default class JobDetail extends Component {
   componentDidMount(){
     let __this = this,i;
 
-    axios.get("/job/userList?jobid="+this.props.jobid+"&state=HANDLING")
+    axios.get("/job/userList?id="+this.props.jobid+"&state=HANDLING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
@@ -75,7 +75,7 @@ export default class JobDetail extends Component {
         }
       })
 
-    axios.get("/job/userList?jobid="+this.props.jobid+"&state=WORKING")
+    axios.get("/job/userList?id="+this.props.jobid+"&state=WORKING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){

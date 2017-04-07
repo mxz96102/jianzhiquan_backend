@@ -74,7 +74,7 @@ export default class User extends Component {
         })
     }else
       this.setState({
-        data : res.data.result.filter(function (e) {
+        data : this.state.data.filter(function (e) {
           return (e+'').includes(value)
         })
       })
@@ -97,7 +97,7 @@ export default class User extends Component {
     return (
       <div>
         <Input.Search
-          placeholder="input search text"
+          placeholder="输入用户名字"
           style={{ width: 200 }}
           onSearch={this.onSearch.bind(this)}
         />
