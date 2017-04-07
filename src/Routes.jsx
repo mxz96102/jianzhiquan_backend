@@ -11,6 +11,7 @@ import Deal from './view/Deal'
 import Job from './view/Job'
 import JobAdd from './view/JobAdd'
 import Money from './view/Money'
+import User from './view/User'
 
 const routes = {
 	path: '/',
@@ -49,6 +50,9 @@ const routes = {
     },{
       path: 'money',
       component: Money
+    },{
+      path: 'user',
+      component: User
     },
 	]
 }
