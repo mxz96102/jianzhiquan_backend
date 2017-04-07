@@ -56,7 +56,7 @@ export default class JobDetail extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           let i;
-
+          console.log(res.data.result)
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].operation = (
               <Button.Group>
@@ -65,13 +65,14 @@ export default class JobDetail extends Component {
               </Button.Group>
             );
           }
-
           console.log(res.data.result)
-
           __this.setState({
             hanledata : res.data.result
           })
         }
+      })
+      .catch(function (error) {
+        console.log(error)
       })
 
     axios.get("/job/userList?id="+this.props.jobid+"&state=WORKING")
