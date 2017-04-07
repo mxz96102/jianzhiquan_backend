@@ -79,7 +79,7 @@ export default class Colleage extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
-            res.data.result[i].operation = (
+            res.data.result[i].add = (
               <Form.Item>
                 <Input defaultValue="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
                 <Button.Group>

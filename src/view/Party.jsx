@@ -55,12 +55,21 @@ export default class Market extends Component {
     }
   }
 
+  getrefer(id,ownerid){
+    axios.get('/party/refer?id='+id+'&ownerid='+ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F')
+
+  }
+
   componentDidMount(){
     let __this = this,i;
 
     axios.get("/party/allParty")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].link = (<a href={"http://job.4nian.cc/com.cn.plurality/party/refer??id="+res.data.result[i].id+'&ownerid='+res.data.result[i].ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F'}>加入链接</a>)
+          }
+
           __this.setState({
             data : res.data.result
           })
