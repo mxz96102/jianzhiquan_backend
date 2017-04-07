@@ -75,11 +75,16 @@ export default class User extends Component {
           }
         })
     }else
-      this.setState({
-        data : this.state.data.filter(function (e) {
-          return (e.username+'').includes(value)
+      axios.get("/user/allUser")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            __this.setState({
+              data : res.data.result.filter(function (e) {
+                return (e.username+'').includes(value)
+              })
+            })
+          }
         })
-      })
   }
 
   componentDidMount(){

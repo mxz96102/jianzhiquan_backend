@@ -17,10 +17,6 @@ export default class JobDetail extends Component {
         dataIndex: 'phonenum',
         key: 'phonenum',
       }, {
-        title: '状态',
-        dataIndex: 'state',
-        key: 'state',
-      }, {
         title: '处理',
         dataIndex: 'operation',
         key: 'operation',
@@ -66,7 +62,6 @@ export default class JobDetail extends Component {
                 <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button>
               </Button.Group>
             );
-
           }
 
           console.log(res.data.result)
