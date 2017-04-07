@@ -61,7 +61,7 @@ export default class School extends Component {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
             if(res.data.result[i].tradestate === "HANDLING")
-              res.data.result[i].approve = (<button onClick={() => __this.handleApprove(parseInt(res.data.result[i].id))}>提现完成</button>)
+              res.data.result[i].approve = (<button onClick={() => __this.handleApprove.bind(__this,parseInt(res.data.result[i].id))}>提现完成</button>)
             res.data.result[i].tradestate = state[res.data.result[i].tradestate]
             res.data.result[i].createtime = (new Date(res.data.result[i].createtime)).toLocaleString()
           }

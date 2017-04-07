@@ -20,6 +20,10 @@ export default class Colleage extends Component {
         title: '授权人',
         dataIndex: 'colleage',
         key: 'colleage',
+      }, {
+        title: '添加授权',
+        dataIndex: 'add',
+        key: 'add',
       }],
       data:[
         {name:"Loading"}
@@ -48,12 +52,43 @@ export default class Colleage extends Component {
     }
   }
 
+  addUser(name,id){
+    let content = document.getElementsByName(name)[0],__this = this;
+    axios.get('/uni/createAuthorizedUser?phonenum='+content.value+'&colleageid='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('添加成功');
+        }
+      })
+  }
+
+  delUser(name,id){
+    let content = document.getElementsByName(name)[0],__this = this;
+    axios.get('/uni/deleteAuthorizedUser?phonenum='+content.value+'&colleageid='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('添加成功');
+        }
+      })
+  }
+
   componentDidMount(){
     let __this = this;
 
     axios.get("/uni/allColleage?uniid="+this.props.uniid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].operation = (
+              <Form.Item>
+                <Input defaultValue="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                <Button.Group>
+                  <Button onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                  <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                </Button.Group>
+              </Form.Item>)
+          }
+
           __this.setState({
             data : res.data.result
           })

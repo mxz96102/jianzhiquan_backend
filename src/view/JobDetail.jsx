@@ -49,6 +49,8 @@ export default class JobDetail extends Component {
       })
   }
 
+/**/
+
   componentDidMount(){
     let __this = this;
 
@@ -56,23 +58,15 @@ export default class JobDetail extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           let i;
-          console.log(res.data.result)
+
           for(i=0;i<res.data.result.length;i++){
-            res.data.result[i].operation = (
-              <Button.Group>
-                <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button>
-                <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button>
-              </Button.Group>
-            );
+            res.data.result[i].operation = (<Button.Group><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button></Button.Group>)
           }
-          console.log(res.data.result)
+
           __this.setState({
-            hanledata : res.data.result
+            handledata : res.data.result
           })
         }
-      })
-      .catch(function (error) {
-        console.log(error)
       })
 
     axios.get("/job/userList?id="+this.props.jobid+"&state=WORKING")
