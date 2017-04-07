@@ -10,58 +10,53 @@ export default class Market extends Component {
     this.state={
       columns : [{
         title: '学校',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'uniname',
+        key: 'uniname',
       }, {
         title: '名称',
-        dataIndex: 'id',
-        key: 'id',
+        dataIndex: 'partyname',
+        key: 'partyname',
       }, {
         title: '圈主',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'ownername',
+        key: 'ownername',
       }, {
-        title: '主要学院',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        title: '总兼职',
+        dataIndex: 'allJobnum',
+        key: 'allJobnum',
       }, {
-        title: '总监制',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
-      }, {
-        title: '总次数',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        title: '总人数',
+        dataIndex: 'allMembernum',
+        key: 'allMembernum',
       }, {
         title: '总收益',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'allIncomenum',
+        key: 'allIncomenum',
       }, {
         title: '注册链接',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'link',
+        key: 'link',
       }, {
         title: '新注册',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'newMembernum',
+        key: 'newMembernum',
       }, {
         title: '新次数',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'newJobnum',
+        key: 'newJobnum',
       }, {
         title: '新收益',
-        dataIndex: 'ownerid',
-        key: 'ownerid',
+        dataIndex: 'newIncomenum',
+        key: 'newIncomenum',
       }],
       data:[
-        {name:"Loading"}
+        {uniname:"Loading"}
       ]
     }
   }
 
-
   componentDidMount(){
-    let __this = this
+    let __this = this,i;
 
     axios.get("/party/allParty")
       .then(function (res) {

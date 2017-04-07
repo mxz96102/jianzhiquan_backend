@@ -9,23 +9,23 @@ export default class MarketDeal extends Component {
     super();
     this.state={
       columns : [{
-        title: '姓名',
+        title: '序号',
         dataIndex: 'marketname',
         key: 'marketname',
       }, {
-        title: '电话',
+        title: '时间',
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: 'qq',
+        title: '相关客户',
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: '宿舍',
+        title: '成交金额',
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: '创建人',
+        title: '记录人',
         dataIndex: 'id',
         key: 'id',
       }],

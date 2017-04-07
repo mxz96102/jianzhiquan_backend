@@ -50,11 +50,13 @@ export default class JobDetail extends Component {
   }
 
   componentDidMount(){
-    let __this = this,i;
+    let __this = this;
 
     axios.get("/job/userList?id="+this.props.jobid+"&state=HANDLING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          let i;
+
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].operation = (
               <Button.Group>
@@ -75,6 +77,8 @@ export default class JobDetail extends Component {
     axios.get("/job/userList?id="+this.props.jobid+"&state=WORKING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          let i;
+
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].operation = (<Form.Item><Input defaultValue="工资数额（整数）" size="small" name="salary"/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button></Form.Item>)
           }
