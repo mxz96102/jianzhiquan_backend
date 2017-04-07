@@ -73,7 +73,7 @@ export default class Colleage extends Component {
   }
 
   componentDidMount(){
-    let __this = this;
+    let __this = this,i;
 
     axios.get("/uni/allColleage?uniid="+this.props.uniid)
       .then(function (res) {
