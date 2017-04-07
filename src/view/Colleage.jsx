@@ -64,10 +64,10 @@ export default class Colleage extends Component {
   render () {
     return (
       <div>
-        <Table dataSource={this.state.data} columns={this.state.columns} />
+        <Table defaultPageSize="6" dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
-          <Input name="unicolleage" style={{ width: '75%' }} placeholder="学院名称" required/>
-          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '18%' }}>添加</Button>
+          <Input name="unicolleage" style={{ width: '66%' }} placeholder="学院名称" required/>
+          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '30%' }}>添加</Button>
         </Form.Item>
       </div>
     )
