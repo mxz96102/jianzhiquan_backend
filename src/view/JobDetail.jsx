@@ -93,8 +93,8 @@ export default class JobDetail extends Component {
     return (
       <div>
         <Tabs defaultActiveKey="1">
-          <TabPane tab="审核" key="1"><Table defaultPageSize="6" dataSource={this.state.handledata} columns={this.state.columns} /></TabPane>
-          <TabPane tab="发工资" key="2"><Table defaultPageSize="6" dataSource={this.state.workdata} columns={this.state.columns} /></TabPane>
+          <Tabs.TabPane tab="审核" key="1"><Table defaultPageSize="6" dataSource={this.state.handledata} columns={this.state.columns} /></Tabs.TabPane>
+          <Tabs.TabPane tab="发工资" key="2"><Table defaultPageSize="6" dataSource={this.state.workdata} columns={this.state.columns} /></Tabs.TabPane>
         </Tabs>
 
       </div>
