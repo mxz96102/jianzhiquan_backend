@@ -29,8 +29,9 @@ export default class Layout extends React.Component {
 			6 : "party/add",
 			7 : "market/",
 			8 : "market/add",
-			9 : "deals",
-      10 : "money"
+      9 : "user",
+			10 : "deals",
+      11 : "money"
 		};
 		console.log('click ', e);
 		this.setState({
@@ -77,9 +78,10 @@ export default class Layout extends React.Component {
 								<Menu.Item key="7">管理班级</Menu.Item>
 								<Menu.Item key="8">添加班级</Menu.Item>
 							</SubMenu>
+              <Menu.Item key="9">用户管理</Menu.Item>
 							<SubMenu key="sub6" title={<span><Icon type="right" /><span>交易</span></span>}>
-								<Menu.Item key="9">四项数据</Menu.Item>
-								<Menu.Item key="10">提现管理</Menu.Item>
+								<Menu.Item key="10">四项数据</Menu.Item>
+								<Menu.Item key="11">提现管理</Menu.Item>
 							</SubMenu>
 						</Menu>
 					</aside>

@@ -59,6 +59,12 @@ export default class Job extends Component {
     }
   }
 
+  jobArrange(jobid){
+    Modal.info({
+      content:(<JobDetail jobid={jobid}/>)
+    })
+  }
+
 
   componentDidMount(){
     let __this = this,i,states = {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"};
@@ -70,7 +76,8 @@ export default class Job extends Component {
             res.data.result[i].fromtime = (new Date(res.data.result[i].fromtime)).toLocaleDateString()
             res.data.result[i].untiltime = (new Date(res.data.result[i].untiltime)).toLocaleDateString()
             res.data.result[i].jobstate = states[res.data.result[i].jobstate]
-            res.data.result[i].workernumnow = res.data.result[i].workernumnow
+            res.data.result[i].link = (<a href={"http://job.4nian.cc/#/job/info/"+res.data.result[i].id}>链接</a>)
+            res.data.result[i].workernumnow = (<span style={{cursor:'pointer'}} onClick={__this.jobArrange.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].workernumnow}</span>)
           }
 
           __this.setState({
