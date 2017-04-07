@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table } from 'antd'
+import{ Table, Form, Input, Button } from 'antd'
 import axios from "../axios";
 
 
@@ -66,8 +66,8 @@ export default class Colleage extends Component {
       <div>
         <Table dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
-          <Input name="unicolleage" style={{ width: '80%' }} placeholder="学院名称" required/>
-          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '15%' }}>添加</Button>
+          <Input name="unicolleage" style={{ width: '75%' }} placeholder="学院名称" required/>
+          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '20%' }}>添加</Button>
         </Form.Item>
       </div>
     )
