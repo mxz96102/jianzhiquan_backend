@@ -14,8 +14,8 @@ export default class Dorm extends Component {
         key: 'id',
       }, {
         title: '楼栋名称',
-        dataIndex: 'buildname',
-        key: 'buildname',
+        dataIndex: 'dormname',
+        key: 'dormname',
       }],
       data:[
         {buildname:"Loading"}
