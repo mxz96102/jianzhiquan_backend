@@ -38,7 +38,7 @@ export default class JobDetail extends Component {
     axios.get('/job/approval?jobid='+this.props.jobid+'&userid='+userid+'&state='+opration)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-
+          message.success('操作成功');
         }
       })
   }
@@ -68,6 +68,8 @@ export default class JobDetail extends Component {
             );
 
           }
+
+          console.log(res.data.result)
 
           __this.setState({
             hanledata : res.data.result

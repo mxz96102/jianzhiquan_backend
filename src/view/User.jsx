@@ -63,6 +63,8 @@ export default class User extends Component {
   }
 
   onSearch(value){
+    let __this = this
+
     if(value === ""){
       axios.get("/user/allUser")
         .then(function (res) {
@@ -75,7 +77,7 @@ export default class User extends Component {
     }else
       this.setState({
         data : this.state.data.filter(function (e) {
-          return (e+'').includes(value)
+          return (e.username+'').includes(value)
         })
       })
   }
