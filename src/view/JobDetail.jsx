@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Form, Input, Button, message } from 'antd'
+import{ Table, Form, Input, Button, message, Tabs } from 'antd'
 import axios from "../axios";
 
 
@@ -25,7 +25,10 @@ export default class JobDetail extends Component {
         dataIndex: 'operation',
         key: 'operation',
       }],
-      data:[
+      workdata:[
+        {name:"Loading"}
+      ],
+      handledata:[
         {name:"Loading"}
       ]
     }
@@ -53,25 +56,34 @@ export default class JobDetail extends Component {
   componentDidMount(){
     let __this = this,i;
 
-    axios.get("/job/userList?jobid="+this.props.jobid)
+    axios.get("/job/userList?jobid="+this.props.jobid+"&state=HANDLING")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
-            if(res.data.result[i].tradestate === "HANDLING")
-              res.data.result[i].operation = (
-                <Button.Group>
-                  <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button>
-                  <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button>
-                </Button.Group>
-              )
-            else if(res.data.result[i].tradestate === "WORKING")
-              res.data.result[i].operation = (<Form.Item><Input defaultValue="工资数额（整数）" size="small" name="salary"/><Button size="small">发工资</Button></Form.Item>)
-            else
-              res.data.result[i].operation = "已拒绝"
+            res.data.result[i].operation = (
+              <Button.Group>
+                <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button>
+                <Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button>
+              </Button.Group>
+            );
+
           }
 
           __this.setState({
-            data : res.data.result
+            hanledata : res.data.result
+          })
+        }
+      })
+
+    axios.get("/job/userList?jobid="+this.props.jobid+"&state=WORKING")
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].operation = (<Form.Item><Input defaultValue="工资数额（整数）" size="small" name="salary"/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button></Form.Item>)
+          }
+
+          __this.setState({
+            workdata : res.data.result
           })
         }
       })
@@ -80,7 +92,11 @@ export default class JobDetail extends Component {
   render () {
     return (
       <div>
-        <Table defaultPageSize="6" dataSource={this.state.data} columns={this.state.columns} />
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="审核" key="1"><Table defaultPageSize="6" dataSource={this.state.handledata} columns={this.state.columns} /></TabPane>
+          <TabPane tab="发工资" key="2"><Table defaultPageSize="6" dataSource={this.state.workdata} columns={this.state.columns} /></TabPane>
+        </Tabs>
+
       </div>
     )
   }

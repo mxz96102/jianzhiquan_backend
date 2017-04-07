@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
 import{ Table, Modal } from 'antd'
 import axios from "../axios";
+import JobDetail from './JobDetail'
 
 
 export default class Job extends Component {

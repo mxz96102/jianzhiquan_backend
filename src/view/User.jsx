@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table } from 'antd'
+import{ Table, Input } from 'antd'
 import axios from "../axios";
 
 
@@ -55,10 +55,30 @@ export default class User extends Component {
       }],
       data:[
         {uniname:"Loading"}
-      ]
+      ],
+      filterDropdownVisible: false,
+      searchText: '',
+      filtered: false,
     }
   }
 
+  onSearch(value){
+    if(value === ""){
+      axios.get("/user/allUser")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            __this.setState({
+              data : res.data.result
+            })
+          }
+        })
+    }else
+      this.setState({
+        data : res.data.result.filter(function (e) {
+          return (e+'').includes(value)
+        })
+      })
+  }
 
   componentDidMount(){
     let __this = this
@@ -76,6 +96,11 @@ export default class User extends Component {
   render () {
     return (
       <div>
+        <Input.Search
+          placeholder="input search text"
+          style={{ width: 200 }}
+          onSearch={this.onSearch.bind(this)}
+        />
         <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )
