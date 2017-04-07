@@ -9,7 +9,8 @@ export default class SchoolAdd extends Component {
     super();
     this.state={
       start:"",
-      end:""
+      end:"",
+      id:1
     }
   }
 
@@ -25,7 +26,7 @@ export default class SchoolAdd extends Component {
       "&untiltime="+this.state.end +
       "&time="+getByName("time") +
       "&place="+getByName("place")+
-      "&uniid="+getByName("uniid"))
+      "&uniid="+this.state.id)
       .then((res)=>{
         if(res.data.msg === "SUCCESS"){
           alert("提交成功");
@@ -55,6 +56,30 @@ export default class SchoolAdd extends Component {
   }
 
   componentDidMount(){
+    let __this = this;
+
+    axios.get("/uni/allUniversity")
+      .then((res)=>{
+        let i,data = res.data.result;
+
+        if(res.data.msg === "SUCCESS"){
+          __this.state.option= [];
+          for(i=0;i<data.length;i++){
+            __this.state.option.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
+          }
+
+          __this.setState({
+            option : __this.state.option
+          })
+        }
+      });
+
+  }
+
+  handleChange(value){
+    this.setState({
+      id: value.split("-")[0]
+    })
 
   }
 
@@ -92,7 +117,9 @@ export default class SchoolAdd extends Component {
             <Input name="uniid" type="text" placeholder="请从管理学校获得" autosize required/>
           </Form.Item>
           <Form.Item label="兼职描述">
-            <Input name="description" type="textarea" autosize={{ minRows: 2, maxRows: 6 }} required/>
+            <Select style={{minWidth:"10rem"}} onSelect={this.handleChange.bind(this)} >
+              {this.state.option}
+            </Select>
           </Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             提交

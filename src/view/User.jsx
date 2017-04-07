@@ -4,56 +4,52 @@ import{ Table } from 'antd'
 import axios from "../axios";
 
 
-export default class Job extends Component {
+export default class User extends Component {
   constructor(){
     super();
     this.state={
       columns : [{
-        title: '学校',
+        title: '学校名',
         dataIndex: 'jobname',
         key: 'jobname',
       }, {
-        title: '兼职类型',
+        title: '圈子',
         dataIndex: 'workernummax',
         key: 'workernummax',
       }, {
-        title: '兼职标题',
+        title: '姓名',
         dataIndex: 'jobstate',
         key: 'jobstate',
       }, {
-        title: '开始时间',
+        title: '性别',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '结束时间',
+        title: '手机',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '兼职时段',
+        title: 'qq',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '工作地点',
+        title: '学院',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '招聘人数',
+        title: '年级',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '工资待遇',
+        title: '班级',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '兼职情况',
+        title: '楼栋',
         dataIndex: 'request',
         key: 'request',
       }, {
-        title: '链接',
-        dataIndex: 'request',
-        key: 'request',
-      }, {
-        title: '状态',
+        title: '余额',
         dataIndex: 'request',
         key: 'request',
       }],

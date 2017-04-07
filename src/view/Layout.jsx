@@ -1,6 +1,7 @@
 /**
  * Created by Doming on 2016/11/7.
  */
+
 import React from "react";
 import {Menu, Breadcrumb, Icon} from "antd";
 import { hashHistory } from 'react-router'
@@ -43,7 +44,7 @@ export default class Layout extends React.Component {
       .then((res)=>{
         console.log(res);
         if(res.data.code === '401'){
-          location.hash = '/'
+          //location.hash = '/'
         }
       })
       .catch(function (error) {
