@@ -113,13 +113,13 @@ export default class SchoolAdd extends Component {
           <Form.Item label="工作地点">
             <Input name="place" type="text" autosize required/>
           </Form.Item>
-          <Form.Item label="学校id">
-            <Input name="uniid" type="text" placeholder="请从管理学校获得" autosize required/>
-          </Form.Item>
-          <Form.Item label="兼职描述">
+          <Form.Item label="学校">
             <Select style={{minWidth:"10rem"}} onSelect={this.handleChange.bind(this)} >
               {this.state.option}
             </Select>
+          </Form.Item>
+          <Form.Item label="兼职描述">
+            <Input name="description" type="textarea" autosize={{ minRows: 2, maxRows: 6 }} required/>
           </Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             提交

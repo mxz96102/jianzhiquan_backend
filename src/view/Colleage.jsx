@@ -10,12 +10,12 @@ export default class Colleage extends Component {
     this.state={
       columns : [{
         title: '学院序号',
-        dataIndex: 'marketname',
-        key: 'marketname',
-      }, {
-        title: '学院名称',
         dataIndex: 'id',
         key: 'id',
+      }, {
+        title: '学院名称',
+        dataIndex: 'colleagename',
+        key: 'colleagename',
       }, {
         title: '授权人',
         dataIndex: 'colleage',
@@ -67,7 +67,7 @@ export default class Colleage extends Component {
         <Table dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
           <Input name="unicolleage" style={{ width: '75%' }} placeholder="学院名称" required/>
-          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '20%' }}>添加</Button>
+          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '18%' }}>添加</Button>
         </Form.Item>
       </div>
     )

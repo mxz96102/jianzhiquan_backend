@@ -14,11 +14,11 @@ export default class Dorm extends Component {
         key: 'id',
       }, {
         title: '楼栋名称',
-        dataIndex: 'buildName',
-        key: 'buildName',
+        dataIndex: 'buildname',
+        key: 'buildname',
       }],
       data:[
-        {buildName:"Loading"}
+        {buildname:"Loading"}
       ]
     }
   }
@@ -27,7 +27,7 @@ export default class Dorm extends Component {
     let content = document.getElementsByName("unidorm")[0],__this = this;
 
     if(content.value.length > 0){
-      axios.get('/uni/createDorm?dormName='+content.value+'&uniid='+this.props.uniid)
+      axios.get('/uni/createDorm?dormname='+content.value+'&uniid='+this.props.uniid)
         .then(function (res) {
           if(res.data.msg === "SUCCESS") {
             content.value = "";
@@ -62,8 +62,8 @@ export default class Dorm extends Component {
       <div>
         <Table dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
-          <Input name="unidorm" style={{ width: '80%' }} placeholder="楼栋名称" required/>
-          <Button onClick={this.addDorm.bind(this)} type="primary" style={{ width: '15%' }}>添加</Button>
+          <Input name="unidorm" style={{ width: '75%' }} placeholder="楼栋名称" required/>
+          <Button onClick={this.addDorm.bind(this)} type="primary" style={{ width: '18%' }}>添加</Button>
         </Form.Item>
       </div>
     )
