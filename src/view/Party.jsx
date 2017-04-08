@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table } from 'antd'
+import{ Table, Button, Input, message } from 'antd'
 import axios from "../axios";
 
 
@@ -48,6 +48,10 @@ export default class Market extends Component {
         title: '新收益',
         dataIndex: 'newIncomenum',
         key: 'newIncomenum',
+      }, {
+        title: '更换圈主',
+        dataIndex: 'change',
+        key: 'change',
       }],
       data:[
         {uniname:"Loading"}
@@ -55,9 +59,15 @@ export default class Market extends Component {
     }
   }
 
-  getrefer(id,ownerid){
-    axios.get('/party/refer?id='+id+'&ownerid='+ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F')
-
+  changeOwner(name,id){
+    let content = document.getElementsByName(name)[0],__this = this;
+    axios.get('/party/manageOwner?phonenum='+content.value+'&id='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('授权成功');
+          content.value = ''
+        }
+      })
   }
 
   componentDidMount(){
@@ -68,6 +78,10 @@ export default class Market extends Component {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].link = (<a href={"http://job.4nian.cc/com.cn.plurality/party/refer??id="+res.data.result[i].id+'&ownerid='+res.data.result[i].ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F'}>加入链接</a>)
+            res.data.result[i].change = (<Form.Item>
+              <Input placeholder="圈主手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+              <Button  onClick={__this.changeOwner.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">授权</Button>
+            </Form.Item>)
           }
 
           __this.setState({

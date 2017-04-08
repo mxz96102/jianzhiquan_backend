@@ -45,7 +45,7 @@ export default class Layout extends React.Component {
       .then((res)=>{
         console.log(res);
         if(res.data.code === '401'){
-          //location.hash = '/'
+          location.hash = '/'
         }
       })
       .catch(function (error) {
@@ -76,7 +76,7 @@ export default class Layout extends React.Component {
 							</SubMenu>
 							<SubMenu key="sub5" title={<span><Icon type="right" /><span>班级</span></span>}>
 								<Menu.Item key="7">管理班级</Menu.Item>
-								<Menu.Item key="8">添加班级</Menu.Item>
+								{/*<Menu.Item key="8">添加班级</Menu.Item>*/}
 							</SubMenu>
               <Menu.Item key="9">用户管理</Menu.Item>
 							<SubMenu key="sub6" title={<span><Icon type="right" /><span>交易</span></span>}>
