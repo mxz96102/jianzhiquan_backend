@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Form, Input, Button } from 'antd'
+import{ Table, Form, Input, Button, message } from 'antd'
 import axios from "../axios";
 
 
@@ -58,6 +58,7 @@ export default class Colleage extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('添加成功');
+          content.value = ''
         }
       })
   }
@@ -67,7 +68,8 @@ export default class Colleage extends Component {
     axios.get('/uni/deleteAuthorizedUser?phonenum='+content.value+'&colleageid='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          message.success('添加成功');
+          message.success('删除成功');
+          content.value = ''
         }
       })
   }
@@ -81,9 +83,9 @@ export default class Colleage extends Component {
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].add = (
               <Form.Item>
-                <Input defaultValue="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
                 <Button.Group>
-                  <Button onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                  <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
                   <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
                 </Button.Group>
               </Form.Item>)

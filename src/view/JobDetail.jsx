@@ -40,11 +40,12 @@ export default class JobDetail extends Component {
   }
 
   salary(userid){
-    let content = document.getElementsByName("salary")[0],__this = this;
+    let content = document.getElementsByName("salary"+parseInt(res.data.result[i].id))[0],__this = this;
     axios.get('job/payoff?jobid='+this.props.jobid+'&userid='+userid+'&salary='+content.value)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('发放成功');
+          content.value = ''
         }
       })
   }
@@ -75,7 +76,7 @@ export default class JobDetail extends Component {
           let i;
 
           for(i=0;i<res.data.result.length;i++){
-            res.data.result[i].operation = (<Form.Item><Input defaultValue="工资数额（整数）" size="small" name="salary"/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button></Form.Item>)
+            res.data.result[i].operation = (<Form.Item><Input defaultValue="工资数额（整数）" size="small" name={"salary"+parseInt(res.data.result[i].id)}/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button></Form.Item>)
           }
 
           __this.setState({
