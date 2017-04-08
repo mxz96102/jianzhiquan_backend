@@ -84,7 +84,7 @@ export default class Colleage extends Component {
             res.data.result[i].add = (
               <Form.Item>
                 <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
-                <Button.Group>
+                <Button.Group size="small">
                   <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
                   <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
                 </Button.Group>
