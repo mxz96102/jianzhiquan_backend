@@ -92,7 +92,7 @@ export default class User extends Component {
   }
 
   componentDidMount(){
-    let __this = this
+    let __this = this,i;
 
     axios.get("/user/allUser")
       .then(function (res) {
