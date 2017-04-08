@@ -88,7 +88,7 @@ export default class User extends Component {
   }
 
   getDetail(userid){
-    Modal.info({content:(<UserDetail userid="userid"/>)})
+    Modal.info({content:(<UserDetail userid={userid}/>)})
   }
 
   componentDidMount(){
