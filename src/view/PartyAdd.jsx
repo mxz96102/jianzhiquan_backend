@@ -54,7 +54,7 @@ export default class SchoolAdd extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item label="圈子名称">
-            <Input name="uniname" type="text" autosize required/>
+            <Input name="name" type="text" autosize required/>
           </Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             提交
