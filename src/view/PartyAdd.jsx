@@ -18,8 +18,7 @@ export default class SchoolAdd extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.get("/party/createParty?name="+getByName("name")+
-      "&grade"+getName("grade"))
+    axios.get("/party/createParty?name="+getByName("name"))
       .then((res)=>{
         if(res.data.msg === "SUCCESS"){
           alert("提交成功");
