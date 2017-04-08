@@ -101,7 +101,6 @@ export default class JobDetail extends Component {
           __this.state.refdata = [];
 
           for(i=0;i<res.data.result.length;i++){
-            //res.data.result[i].operation = (<Button.Group size="small"><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'WORKING')} type="primary">通过</Button></Button.Group>)
             switch (res.data.result[i].tradestate){
               case "HANDLING":
                 res.data.result[i].operation = (<Button.Group size="small"><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'DONE')} type="primary">通过</Button></Button.Group>)
@@ -125,7 +124,9 @@ export default class JobDetail extends Component {
           }
 
           __this.setState({
-            handledata : res.data.result
+            handledata : __this.state.handledata,
+            refdata : __this.state.refdata,
+            appdata : __this.state.appdata
           })
         }
       })
