@@ -13,17 +13,25 @@ export default class MarketDeal extends Component {
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: '时间',
-        dataIndex: 'createtime',
-        key: 'createtime',
+        title: '名字',
+        dataIndex: 'name',
+        key: 'name',
       }, {
-        title: '创建人',
-        dataIndex: 'ownername',
-        key: 'ownername',
+        title: '角色',
+        dataIndex: 'role',
+        key: 'role',
       }, {
-        title: '内容',
-        dataIndex: 'content',
-        key: 'content',
+        title: 'qq',
+        dataIndex: 'qq',
+        key: 'qq',
+      }, {
+        title: '手机',
+        dataIndex: 'phonenum',
+        key: 'phonenum',
+      }, {
+        title: '宿舍',
+        dataIndex: 'dorm',
+        key: 'dorm',
       }],
       data:[
         {name:"Loading"}
@@ -35,12 +43,9 @@ export default class MarketDeal extends Component {
   componentDidMount(){
     let __this = this,i;
 
-    axios.get("/market/getAllNoteMessage?marketid="+this.props.marketid)
+    axios.get("/job/getAllAtten?marketid="+this.props.marketid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          for(i=0;i<res.data.result.length;i++){
-            res.data.result[i].createtime =  (new Date(res.data.result[i].createtime)).toLocaleString()
-          }
 
           __this.setState({
             data : res.data.result

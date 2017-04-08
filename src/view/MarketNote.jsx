@@ -17,13 +17,17 @@ export default class MarketDeal extends Component {
         dataIndex: 'createtime',
         key: 'createtime',
       }, {
-        title: '创建人',
+        title: '相关客户',
+        dataIndex: 'custom',
+        key: 'custom',
+      }, {
+        title: '成交金额',
+        dataIndex: 'volume',
+        key: 'volume',
+      }, {
+        title: '记录人',
         dataIndex: 'ownername',
         key: 'ownername',
-      }, {
-        title: '内容',
-        dataIndex: 'content',
-        key: 'content',
       }],
       data:[
         {name:"Loading"}
@@ -35,7 +39,7 @@ export default class MarketDeal extends Component {
   componentDidMount(){
     let __this = this,i;
 
-    axios.get("/market/getAllNoteMessage?marketid="+this.props.marketid)
+    axios.get("/market/getAllDeal?marketid="+this.props.marketid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){

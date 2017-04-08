@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table } from 'antd'
+import{ Table, Modal, message } from 'antd'
 import axios from "../axios";
-
+import MarketDeal from './MarketDeal'
+import MarketAtt from './MarketAtt'
+import MarketNote from './MarketNote'
 
 export default class Market extends Component {
   constructor(){
@@ -52,15 +54,21 @@ export default class Market extends Component {
   }
 
   getDeal(marketid){
-
+    Modal.info({
+      content : <MarketDeal marketid={marketid}/>
+    })
   }
 
   getAtten(marketid){
-
+    Modal.info({
+      content : <MarketAtt marketid={marketid}/>
+    })
   }
 
   getNotes(marketid){
-
+    Modal.info({
+      content : <MarketNote marketid={marketid}/>
+    })
   }
 
   componentDidMount(){
@@ -70,7 +78,14 @@ export default class Market extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
             for(i=0;i<res.data.result.length;i++){
+              res.data.result[i]['attennum'] = (<span onClick={__this.getAtten.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['attennum']}</span>)
 
+              res.data.result[i]['PAPER_num'] = (<span onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['PAPER_num']}</span>)
+              res.data.result[i]['D_SCHOOL_num'] = (<span onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['D_SCHOOL_num']}</span>)
+              res.data.result[i]['MEETING_num'] = (<span onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['MEETING_num']}</span>)
+              res.data.result[i]['T-SHIRT_num'] = (<span onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
+
+              res.data.result[i]['notemessagenum'] = (<span onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
             }
 
           __this.setState({
