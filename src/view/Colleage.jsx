@@ -18,8 +18,8 @@ export default class Colleage extends Component {
         key: 'colleagename',
       }, {
         title: '授权人',
-        dataIndex: 'colleage',
-        key: 'colleage',
+        dataIndex: 'man',
+        key: 'man',
       }, {
         title: '添加授权',
         dataIndex: 'add',
@@ -32,7 +32,7 @@ export default class Colleage extends Component {
   }
 
   addColleage(){
-    let content = document.getElementsByName("unicolleage")[0],__this = this;
+    let content = document.getElementsByName("unicolleage")[0],__this = this,i,j;
 
     if(content.value.length > 0){
       axios.get('/uni/createColleage?colleagename='+content.value+'&uniid='+this.props.uniid)
@@ -42,6 +42,21 @@ export default class Colleage extends Component {
             axios.get("/uni/allColleage?uniid="+__this.props.uniid)
               .then(function (res) {
                 if(res.data.msg === "SUCCESS"){
+                  for(i=0;i<res.data.result.length;i++){
+                    res.data.result[i].man = '';
+
+                    for(j=0;j<res.data.result.user.length;j++){
+                      res.data.result[i].man += res.data.result.user[j].username+"|"
+                    }
+                    res.data.result[i].add = (
+                      <Form.Item>
+                        <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                        <Button.Group size="small">
+                          <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                          <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                        </Button.Group>
+                      </Form.Item>)
+                  }
                   __this.setState({
                     data : res.data.result
                   })
@@ -75,12 +90,17 @@ export default class Colleage extends Component {
   }
 
   componentDidMount(){
-    let __this = this,i;
+    let __this = this,i,j;
 
     axios.get("/uni/allColleage?uniid="+this.props.uniid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].man = '';
+
+            for(j=0;j<res.data.result.user.length;j++){
+              res.data.result[i].man += res.data.result.user[j].username+"|"
+            }
             res.data.result[i].add = (
               <Form.Item>
                 <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>

@@ -95,6 +95,7 @@ export default class Market extends Component {
     return (
       <div>
         <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
+        <p>注:加入链接请右键复制给要加入圈子的用户打开</p>
       </div>
     )
   }

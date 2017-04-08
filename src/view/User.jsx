@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Input } from 'antd'
+import{ Table, Input, Modal, message } from 'antd'
 import axios from "../axios";
-
+import UserDetail from './UserDetail'
 
 export default class User extends Component {
   constructor(){
@@ -87,12 +87,20 @@ export default class User extends Component {
         })
   }
 
+  getDetail(userid){
+    Modal.info({content:(<UserDetail userid="userid"/>)})
+  }
+
   componentDidMount(){
     let __this = this
 
     axios.get("/user/allUser")
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].balance = (<span style={{cursor:'pointer'}} onClick={__this.getDetail.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].balance}</span>)
+          }
+
           __this.setState({
             data : res.data.result
           })
