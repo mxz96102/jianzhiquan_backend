@@ -21,6 +21,10 @@ export default class MarketDeal extends Component {
         dataIndex: 'custom',
         key: 'custom',
       }, {
+        title: '类型',
+        dataIndex: 'dealtype',
+        key: 'dealtype',
+      }, {
         title: '成交金额',
         dataIndex: 'volume',
         key: 'volume',
@@ -37,13 +41,19 @@ export default class MarketDeal extends Component {
 
 
   componentDidMount(){
-    let __this = this,i;
+    let __this = this,i,state={
+      'PAPER':'试卷',
+      'D_SCHOOL': '驾校',
+      'MEETING': '聚会',
+      'T-SHIRT': '纪念衫'
+    };
 
     axios.get("/market/getAllDeal?marketid="+this.props.marketid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].createtime =  (new Date(res.data.result[i].createtime)).toLocaleString()
+            res.data.result[i].dealtype = state[res.data.result[i].dealtype]
           }
 
           __this.setState({

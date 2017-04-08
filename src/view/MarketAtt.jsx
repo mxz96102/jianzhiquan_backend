@@ -43,7 +43,7 @@ export default class MarketDeal extends Component {
   componentDidMount(){
     let __this = this,i;
 
-    axios.get("/job/getAllAtten?marketid="+this.props.marketid)
+    axios.get("/market/getAllAtten?marketid="+this.props.marketid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
 
