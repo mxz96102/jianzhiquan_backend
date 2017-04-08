@@ -98,8 +98,8 @@ export default class Colleage extends Component {
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].man = '';
 
-            for(j=0;j<res.data.result.user.length;j++){
-              res.data.result[i].man += res.data.result.user[j].username+"|"
+            for(j=0;j<res.data.result[i].user.length;j++){
+              res.data.result[i].man += res.data.result[i].user[j].username+"|"
             }
             res.data.result[i].add = (
               <Form.Item>

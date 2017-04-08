@@ -90,12 +90,11 @@ export default class JobDetail extends Component {
 /**/
 
   componentDidMount(){
-    let __this = this;
+    let __this = this,i;
 
     axios.get("/account/userTrade?id="+this.props.userid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          let i;
 
           __this.state.handledata = [];
           __this.state.appdata = [];
