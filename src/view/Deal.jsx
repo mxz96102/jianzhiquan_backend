@@ -85,7 +85,7 @@ export default class Deal extends Component {
     )
       .then((res)=>{
         if(res.data.msg === "SUCCESS"){
-          for(i=0;i<data.length;i++){
+          for(i=0;i<res.data.length;i++){
             res.data.result[i].createtime =  (new Date(res.data.result[i].createtime)).toLocaleString()
             res.data.result[i].dealtype = state[res.data.result[i].dealtype]
           }

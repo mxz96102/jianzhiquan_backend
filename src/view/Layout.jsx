@@ -41,6 +41,24 @@ export default class Layout extends React.Component {
 	}
 
 	componentDidMount(){
+
+  }
+
+  componentDidUpdate(){
+
+    axios.post("user/userInfo")
+      .then((res)=>{
+        console.log(res);
+        if(res.data.code === '401'){
+          location.hash = '/'
+        }
+      })
+      .catch(function (error) {
+
+      });
+  }
+
+	render() {
     const menuLink = {
       "/" : 0,
       "school/" : 1,
@@ -59,23 +77,7 @@ export default class Layout extends React.Component {
     this.setState({
       current: menuLink[location.hash.split('#/')[1]],
     });
-  }
 
-  componentDidUpdate(){
-
-    axios.post("user/userInfo")
-      .then((res)=>{
-        console.log(res);
-        if(res.data.code === '401'){
-          location.hash = '/'
-        }
-      })
-      .catch(function (error) {
-
-      });
-  }
-
-	render() {
 		return (
 			<div>
 				<div className={style.ant_layout_aside}>
