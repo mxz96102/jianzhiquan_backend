@@ -42,6 +42,8 @@ export default class JobDetail extends Component {
   }
 
   approve(id,opration){
+    let __this = this;
+
     axios.get('/account/approval?id='+id+'&tradestate='+opration)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
