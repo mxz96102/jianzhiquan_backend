@@ -46,7 +46,7 @@ export default class JobDetail extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('操作成功');
-          axios.get("/account/userTrade?id="+this.props.userid)
+          axios.get("/account/userTrade?id="+__this.props.userid)
             .then(function (res) {
               if(res.data.msg === "SUCCESS"){
                 let i;
