@@ -12,9 +12,25 @@ const MenuItemGroup = Menu.ItemGroup;
 
 export default class Layout extends React.Component {
 	constructor() {
-		super();
+    const menuLink = {
+      "/" : 0,
+      "school/" : 1,
+      "school/add" : 2,
+      "job" : 3,
+      "job/add" : 4,
+      "party/" : 5,
+      "party/add" : 6,
+      "market/" : 7,
+      "market/add" : 8,
+      "user" : 9,
+      "deals" : 10,
+      "money" : 11
+    };
+
+
+    super();
 		this.state = {
-			current: 1
+			current: menuLink[location.hash.split('#/')[1]],
 		}
 	}
 
@@ -59,24 +75,6 @@ export default class Layout extends React.Component {
   }
 
 	render() {
-    const menuLink = {
-      "/" : 0,
-      "school/" : 1,
-      "school/add" : 2,
-      "job" : 3,
-      "job/add" : 4,
-      "party/" : 5,
-      "party/add" : 6,
-      "market/" : 7,
-      "market/add" : 8,
-      "user" : 9,
-      "deals" : 10,
-      "money" : 11
-    };
-
-    this.setState({
-      current: menuLink[location.hash.split('#/')[1]],
-    });
 
 		return (
 			<div>
