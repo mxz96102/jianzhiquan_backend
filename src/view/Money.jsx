@@ -40,11 +40,11 @@ export default class School extends Component {
     }
   }
 
-  handleApprove(num){
-    axios.get("/account/approval?id="+num)
-      .then((res)=>{
+  approve(id,opration){
+    axios.get('/account/approval?id='+id+'&tradestate='+opration)
+      .then(function (res) {
         if(res.data.msg === "SUCCESS"){
-          location.reload()
+          message.success('操作成功');
         }
       })
   }
@@ -61,7 +61,7 @@ export default class School extends Component {
         if(res.data.msg === "SUCCESS"){
           for(i=0;i<res.data.result.length;i++){
             if(res.data.result[i].tradestate === "HANDLING")
-              res.data.result[i].approve = (<button onClick={__this.handleApprove.bind(__this,parseInt(res.data.result[i].id))}>提现完成</button>)
+              res.data.result[i].approve = (<Button.Group size="small"><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'DONE')} type="primary">通过</Button></Button.Group>)
             res.data.result[i].tradestate = state[res.data.result[i].tradestate]
             res.data.result[i].createtime = (new Date(res.data.result[i].createtime)).toLocaleString()
           }

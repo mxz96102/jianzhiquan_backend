@@ -42,7 +42,7 @@ export default class JobDetail extends Component {
   }
 
   approve(id,opration){
-    axios.get('/account/approval?id='+id+'&state='+opration)
+    axios.get('/account/approval?id='+id+'&tradestate='+opration)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('操作成功');
