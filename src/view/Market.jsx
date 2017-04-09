@@ -54,19 +54,19 @@ export default class Market extends Component {
   }
 
   getDeal(marketid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content : <MarketDeal marketid={marketid}/>
     })
   }
 
   getAtten(marketid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content : <MarketAtt marketid={marketid}/>
     })
   }
 
   getNotes(marketid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content : <MarketNote marketid={marketid}/>
     })
   }

@@ -38,13 +38,13 @@ export default class School extends Component {
   }
 
   colleageArrange(uniid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content : <Colleage uniid={uniid}/>
     })
   }
 
   buildArrange(uniid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content : <Dorm uniid={uniid}/>
     })
   }

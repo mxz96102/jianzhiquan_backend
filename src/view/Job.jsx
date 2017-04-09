@@ -61,7 +61,7 @@ export default class Job extends Component {
   }
 
   jobArrange(jobid){
-    Modal.info({
+    Modal.info({ width : '80vw',
       content:(<JobDetail jobid={jobid}/>)
     })
   }
