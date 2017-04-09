@@ -82,7 +82,9 @@ export default class JobDetail extends Component {
                 }
 
                 __this.setState({
-                  handledata : res.data.result
+                  handledata : __this.state.handledata,
+                  refdata : __this.state.refdata,
+                  appdata : __this.state.appdata
                 })
               }
             })
