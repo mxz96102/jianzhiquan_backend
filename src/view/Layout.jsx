@@ -40,7 +40,29 @@ export default class Layout extends React.Component {
 		hashHistory.push(menuLink[e.key])
 	}
 
+	componentDidMount(){
+    const menuLink = {
+      "/" : 0,
+      "school/" : 1,
+      "school/add" : 2,
+      "job" : 3,
+      "job/add" : 4,
+      "party/" : 5,
+      "party/add" : 6,
+      "market/" : 7,
+      "market/add" : 8,
+      "user" : 9,
+      "deals" : 10,
+      "money" : 11
+    };
+
+    this.setState({
+      current: menuLink[location.hash.split('#/')[1]],
+    });
+  }
+
   componentDidUpdate(){
+
     axios.post("user/userInfo")
       .then((res)=>{
         console.log(res);

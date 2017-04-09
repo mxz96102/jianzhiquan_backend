@@ -62,8 +62,8 @@ export default class Dorm extends Component {
       <div>
         <Table defaultPageSize="6" dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
-          <Input name="unidorm" style={{ width: '66%' }} placeholder="楼栋名称" required/>
-          <Button onClick={this.addDorm.bind(this)} type="primary" style={{ width: '30%' }}>添加</Button>
+          <Input name="unidorm" style={{ width: '200px' }} placeholder="楼栋名称" required/>
+          <Button onClick={this.addDorm.bind(this)} type="primary" style={{ width: '70px' }}>添加</Button>
         </Form.Item>
       </div>
     )

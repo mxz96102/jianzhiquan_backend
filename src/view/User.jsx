@@ -116,7 +116,7 @@ export default class User extends Component {
           style={{ width: 200 }}
           onSearch={this.onSearch.bind(this)}
         />
-        <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
+        <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )
   }

@@ -97,11 +97,13 @@ export default class Deal extends Component {
         <Form.Item label="结束时间">
           <DatePicker onChange={this.handleEnd} format={dateFormat} required/>
         </Form.Item>
-        <Select style={{minWidth:"10rem"}} onSelect={this.handleChange.bind(this)} >
-          {this.state.option}
-        </Select>
-        <Button onClick={this.handleSearch.bind(this)}>查询</Button>
-        <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
+        <Form.Item label="选择大学">
+          <Select style={{minWidth:"10rem"}} onSelect={this.handleChange.bind(this)} >
+            {this.state.option}
+          </Select>
+        </Form.Item>
+        <Form.Item><Button onClick={this.handleSearch.bind(this)}>查询</Button></Form.Item>
+        <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )
   }

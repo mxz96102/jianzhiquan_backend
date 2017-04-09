@@ -103,10 +103,10 @@ export default class Colleage extends Component {
             }
             res.data.result[i].add = (
               <Form.Item>
-                <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                <Input style={{ width: '12rem' }} placeholder="授权人手机号码" size="small" name={"phone"+res.data.result[i].id}/>
                 <Button.Group size="small">
                   <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
-                  <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                  <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">解除</Button>
                 </Button.Group>
               </Form.Item>)
           }
@@ -123,8 +123,8 @@ export default class Colleage extends Component {
       <div>
         <Table defaultPageSize="6" dataSource={this.state.data} columns={this.state.columns} />
         <Form.Item>
-          <Input name="unicolleage" style={{ width: '66%' }} placeholder="学院名称" required/>
-          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '30%' }}>添加</Button>
+          <Input name="unicolleage" style={{ width: '200px' }} placeholder="学院名称" required/>
+          <Button onClick={this.addColleage.bind(this)} type="primary" style={{ width: '70px' }}>添加</Button>
         </Form.Item>
       </div>
     )

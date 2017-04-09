@@ -91,7 +91,7 @@ export default class Job extends Component {
   render () {
     return (
       <div>
-        <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
+        <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )
   }

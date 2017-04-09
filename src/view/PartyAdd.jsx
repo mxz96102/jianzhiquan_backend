@@ -63,13 +63,6 @@ export default class SchoolAdd extends Component {
   render () {
     let __this = this;
 
-    axios.get("/getAllColleage")
-      .then((res)=>{
-        if(res.data.msg === "SUCCESS"){
-          __this.colleage = res.data.result
-        }
-      })
-
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>

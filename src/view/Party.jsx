@@ -79,7 +79,7 @@ export default class Market extends Component {
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].link = (<a href={"http://job.4nian.cc/com.cn.plurality/party/refer?id="+res.data.result[i].id+'&ownerid='+res.data.result[i].ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F'}>加入链接</a>)
             res.data.result[i].change = (<Form.Item>
-              <Input placeholder="圈主手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+              <Input style={{ width: '12rem' }} placeholder="圈主手机号码" size="small" name={"phone"+res.data.result[i].id}/>
               <Button  onClick={__this.changeOwner.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">授权</Button>
             </Form.Item>)
           }
@@ -94,7 +94,7 @@ export default class Market extends Component {
   render () {
     return (
       <div>
-        <Table style={{width:"50vw"}} dataSource={this.state.data} columns={this.state.columns} />
+        <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
         <p>注:加入链接请右键复制给要加入圈子的用户打开</p>
       </div>
     )
