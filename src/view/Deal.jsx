@@ -15,9 +15,25 @@ export default class Deal extends Component {
         title: '单数',
         dataIndex: 'volume',
         key: 'volume',
+      }, {
+        title: '客户',
+        dataIndex: 'custom',
+        key: 'custom',
+      }, {
+        title: '处理人',
+        dataIndex: 'ownername',
+        key: 'ownername',
+      }, {
+        title: '描述',
+        dataIndex: 'discription',
+        key: 'discription',
+      }, {
+        title: '时间',
+        dataIndex: 'createtime',
+        key: 'createtime',
       }],
       data: [
-        {uniname: "Loading"}
+        {}
       ],
       option: [],
       start:"",
@@ -28,7 +44,7 @@ export default class Deal extends Component {
 
 
   componentDidMount(){
-    let __this = this;
+    let __this = this,i;
 
     axios.get("/uni/allUniversity")
       .then((res)=>{
@@ -55,7 +71,12 @@ export default class Deal extends Component {
   }
 
   handleSearch(){
-    let __this = this
+    let __this = this,i,state={
+      'PAPER':'试卷',
+      'D_SCHOOL': '驾校',
+      'MEETING': '聚会',
+      'T-SHIRT': '纪念衫'
+    };
 
     axios.get("market/getDealSelective?id="+this.state.id+
       "&fromtime="+this.state.start +
@@ -64,6 +85,10 @@ export default class Deal extends Component {
     )
       .then((res)=>{
         if(res.data.msg === "SUCCESS"){
+          for(i=0;i<data.length;i++){
+            res.data.result[i].createtime =  (new Date(res.data.result[i].createtime)).toLocaleString()
+            res.data.result[i].dealtype = state[res.data.result[i].dealtype]
+          }
           __this.setState({
             data : res.data.result
           })
