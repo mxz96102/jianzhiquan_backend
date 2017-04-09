@@ -41,10 +41,31 @@ export default class School extends Component {
   }
 
   approve(id,opration){
+    let __this = this,i,state = {
+      HANDLING:"处理中",
+      DONE:"已处理",
+      REFUSED:"已拒绝"
+    };
+
     axios.get('/account/approval?id='+id+'&tradestate='+opration)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('操作成功');
+          axios.get("/account/tradeList")
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                for(i=0;i<res.data.result.length;i++){
+                  if(res.data.result[i].tradestate === "HANDLING")
+                    res.data.result[i].approve = (<Button.Group size="small"><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'REFUSED')}>拒绝</Button><Button onClick={__this.approve.bind(__this,res.data.result[i].id,'DONE')} type="primary">通过</Button></Button.Group>)
+                  res.data.result[i].tradestate = state[res.data.result[i].tradestate]
+                  res.data.result[i].createtime = (new Date(res.data.result[i].createtime)).toLocaleString()
+                }
+
+                __this.setState({
+                  data : res.data.result
+                })
+              }
+            })
         }
       })
   }
