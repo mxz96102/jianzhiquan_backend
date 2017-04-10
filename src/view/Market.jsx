@@ -108,8 +108,11 @@ export default class Market extends Component {
 
               res.data.result[i]['notemessagenum'] = (<span style={{cursor:'pointer'}} onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
             }
+
+
             __this.setState({
               data : res.data.result.filter(function (e) {
+                console.log(value.split('-')[1],e.universityname == value.split('-')[1])
                 return e.universityname == value.split('-')[1]
               })
             })
