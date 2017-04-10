@@ -122,19 +122,20 @@ export default class User extends Component {
 
     axios.get("/uni/allUniversity")
       .then((res)=>{
-        let i,data = res.data.result;
+        let j,data = res.data.result;
 
         if(res.data.msg === "SUCCESS"){
           __this.state.school= [];
-          for(i=0;i<data.length;i++){
+          for(j=0;j<data.length;j++){
             __this.state.school.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
           }
 
           __this.setState({
-            school : __this.state.option
+            school : __this.state.school
           })
         }
       });
+
 
     axios.get("/user/allUser")
       .then(function (res) {

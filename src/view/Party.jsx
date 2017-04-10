@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Button, Input, message, Form } from 'antd'
+import{ Table, Button, Input, message, Form, Select } from 'antd'
 import axios from "../axios";
 
 
@@ -55,7 +55,8 @@ export default class Market extends Component {
       }],
       data:[
         {uniname:"Loading"}
-      ]
+      ],
+      school:[],
     }
   }
 
@@ -112,6 +113,22 @@ export default class Market extends Component {
 
   componentDidMount(){
     let __this = this,i;
+
+    axios.get("/uni/allUniversity")
+      .then((res)=>{
+        let j,data = res.data.result;
+
+        if(res.data.msg === "SUCCESS"){
+          __this.state.school= [];
+          for(j=0;j<data.length;j++){
+            __this.state.school.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
+          }
+
+          __this.setState({
+            school : __this.state.school
+          })
+        }
+      });
 
     axios.get("/party/allParty")
       .then(function (res) {

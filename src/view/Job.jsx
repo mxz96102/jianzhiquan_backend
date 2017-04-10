@@ -56,7 +56,8 @@ export default class Job extends Component {
       }],
       data:[
         {jobname:"Loading"}
-      ]
+      ],
+      school:[],
     }
   }
 
@@ -67,7 +68,7 @@ export default class Job extends Component {
   }
 
   onSchool(value){
-    let __this = this
+    let __this = this;
 
     if(value === "0-全部"){
       axios.get("/job/getAllJob")
@@ -112,16 +113,16 @@ export default class Job extends Component {
 
     axios.get("/uni/allUniversity")
       .then((res)=>{
-        let i,data = res.data.result;
+        let j,data = res.data.result;
 
         if(res.data.msg === "SUCCESS"){
           __this.state.school= [];
-          for(i=0;i<data.length;i++){
+          for(j=0;j<data.length;j++){
             __this.state.school.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
           }
 
           __this.setState({
-            school : __this.state.option
+            school : __this.state.school
           })
         }
       });
