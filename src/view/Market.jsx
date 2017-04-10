@@ -71,6 +71,51 @@ export default class Market extends Component {
     })
   }
 
+  onSchool(value){
+    let __this = this
+
+    if(value === "0-全部"){
+      axios.get("/market/allMarket")
+        .then(function (res) {
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i]['attennum'] = (<span style={{cursor:'pointer'}} onClick={__this.getAtten.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['attennum']}</span>)
+
+            res.data.result[i]['PAPER_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['PAPER_num']}</span>)
+            res.data.result[i]['D_SCHOOL_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['D_SCHOOL_num']}</span>)
+            res.data.result[i]['MEETING_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['MEETING_num']}</span>)
+            res.data.result[i]['T-SHIRT_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
+
+            res.data.result[i]['notemessagenum'] = (<span style={{cursor:'pointer'}} onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
+          }
+          if(res.data.msg === "SUCCESS"){
+            __this.setState({
+              data : res.data.result
+            })
+          }
+        })
+    }else
+      axios.get("/market/allMarket")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            for(i=0;i<res.data.result.length;i++){
+              res.data.result[i]['attennum'] = (<span style={{cursor:'pointer'}} onClick={__this.getAtten.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['attennum']}</span>)
+
+              res.data.result[i]['PAPER_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['PAPER_num']}</span>)
+              res.data.result[i]['D_SCHOOL_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['D_SCHOOL_num']}</span>)
+              res.data.result[i]['MEETING_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['MEETING_num']}</span>)
+              res.data.result[i]['T-SHIRT_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
+
+              res.data.result[i]['notemessagenum'] = (<span style={{cursor:'pointer'}} onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
+            }
+            __this.setState({
+              data : res.data.result.filter(function (e) {
+                return e.uniid == value.split('-')[0]
+              })
+            })
+          }
+        })
+  }
+
   componentDidMount(){
     let __this = this,i;
 
@@ -98,6 +143,11 @@ export default class Market extends Component {
   render () {
     return (
       <div>
+        学校：
+        <Select style={{minWidth:"10rem"}} onSelect={this.onSchool.bind(this)} >
+          <Select.Option key={0}>0-全部</Select.Option>
+          {this.state.school}
+        </Select>
         <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )

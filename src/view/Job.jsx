@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Modal } from 'antd'
+import{ Table, Modal, Select } from 'antd'
 import axios from "../axios";
 import JobDetail from './JobDetail'
 
@@ -66,9 +66,65 @@ export default class Job extends Component {
     })
   }
 
+  onSchool(value){
+    let __this = this
+
+    if(value === "0-全部"){
+      axios.get("/job/getAllJob")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            for(i=0;i<res.data.result.length;i++){
+              res.data.result[i].fromtime = (new Date(res.data.result[i].fromtime)).toLocaleDateString()
+              res.data.result[i].untiltime = (new Date(res.data.result[i].untiltime)).toLocaleDateString()
+              res.data.result[i].jobstate = states[res.data.result[i].jobstate]
+              res.data.result[i].link = (<a href={"http://job.4nian.cc/#/job/info/"+res.data.result[i].id}>链接</a>)
+              res.data.result[i].workernumnow = (<span style={{cursor:'pointer'}} onClick={__this.jobArrange.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].workernumnow}</span>)
+            }
+
+            __this.setState({
+              data : res.data.result
+            })
+          }
+        })
+    }else
+      axios.get("/job/getAllJob")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            for(i=0;i<res.data.result.length;i++){
+              res.data.result[i].fromtime = (new Date(res.data.result[i].fromtime)).toLocaleDateString()
+              res.data.result[i].untiltime = (new Date(res.data.result[i].untiltime)).toLocaleDateString()
+              res.data.result[i].jobstate = states[res.data.result[i].jobstate]
+              res.data.result[i].link = (<a href={"http://job.4nian.cc/#/job/info/"+res.data.result[i].id}>链接</a>)
+              res.data.result[i].workernumnow = (<span style={{cursor:'pointer'}} onClick={__this.jobArrange.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].workernumnow}</span>)
+            }
+
+            __this.setState({
+              data : res.data.result.filter(function (e) {
+                return e.uniid == value.split('-')[0]
+              })
+            })
+          }
+        })
+  }
 
   componentDidMount(){
     let __this = this,i,states = {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"};
+
+    axios.get("/uni/allUniversity")
+      .then((res)=>{
+        let i,data = res.data.result;
+
+        if(res.data.msg === "SUCCESS"){
+          __this.state.school= [];
+          for(i=0;i<data.length;i++){
+            __this.state.school.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
+          }
+
+          __this.setState({
+            school : __this.state.option
+          })
+        }
+      });
 
     axios.get("/job/getAllJob")
       .then(function (res) {
@@ -91,6 +147,11 @@ export default class Job extends Component {
   render () {
     return (
       <div>
+        学校：
+        <Select style={{minWidth:"10rem"}} onSelect={this.onSchool.bind(this)} >
+          <Select.Option key={0}>0-全部</Select.Option>
+          {this.state.school}
+        </Select>
         <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>
     )

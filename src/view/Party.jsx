@@ -70,6 +70,46 @@ export default class Market extends Component {
       })
   }
 
+  onSchool(value){
+    let __this = this
+
+    if(value === "0-全部"){
+      axios.get("/party/allParty")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            for(i=0;i<res.data.result.length;i++){
+              res.data.result[i].link = (<a href={"http://job.4nian.cc/com.cn.plurality/party/refer?id="+res.data.result[i].id+'&ownerid='+res.data.result[i].ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F'}>加入链接</a>)
+              res.data.result[i].change = (<Form.Item>
+                <Input style={{ width: '12rem' }} placeholder="圈主手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                <Button  onClick={__this.changeOwner.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">授权</Button>
+              </Form.Item>)
+            }
+            __this.setState({
+              data : res.data.result
+            })
+          }
+        })
+    }else
+      axios.get("/party/allParty")
+        .then(function (res) {
+          if(res.data.msg === "SUCCESS"){
+            for(i=0;i<res.data.result.length;i++){
+              res.data.result[i].link = (<a href={"http://job.4nian.cc/com.cn.plurality/party/refer?id="+res.data.result[i].id+'&ownerid='+res.data.result[i].ownerid+'&redirect=http%3A%2F%2Fjob.4nian.cc%2F%23%2F'}>加入链接</a>)
+              res.data.result[i].change = (<Form.Item>
+                <Input style={{ width: '12rem' }} placeholder="圈主手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                <Button  onClick={__this.changeOwner.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">授权</Button>
+              </Form.Item>)
+            }
+
+            __this.setState({
+              data : res.data.result.filter(function (e) {
+                return e.uniid == value.split('-')[0]
+              })
+            })
+          }
+        })
+  }
+
   componentDidMount(){
     let __this = this,i;
 
@@ -94,6 +134,11 @@ export default class Market extends Component {
   render () {
     return (
       <div>
+        学校：
+        <Select style={{minWidth:"10rem"}} onSelect={this.onSchool.bind(this)} >
+          <Select.Option key={0}>0-全部</Select.Option>
+          {this.state.school}
+        </Select>
         <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
         <p>注:加入链接请右键复制给要加入圈子的用户打开</p>
       </div>
