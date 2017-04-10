@@ -118,7 +118,7 @@ export default class Job extends Component {
         if(res.data.msg === "SUCCESS"){
           __this.state.school= [];
           for(j=0;j<data.length;j++){
-            __this.state.school.push(<Select.Option key={data[i].id}>{data[i].id+"-"+data[i].uniname}</Select.Option>)
+            __this.state.school.push(<Select.Option key={data[j].id}>{data[j].id+"-"+data[j].uniname}</Select.Option>)
           }
 
           __this.setState({
