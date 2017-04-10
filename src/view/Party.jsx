@@ -104,7 +104,7 @@ export default class Market extends Component {
 
             __this.setState({
               data : res.data.result.filter(function (e) {
-                return e.uniid == value.split('-')[0]
+                return e.uniname == value.split('-')[1]
               })
             })
           }
