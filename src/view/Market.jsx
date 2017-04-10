@@ -97,6 +97,7 @@ export default class Market extends Component {
     }else
       axios.get("/market/allMarket")
         .then(function (res) {
+          console.log(value.split('-')[1]);
           if(res.data.msg === "SUCCESS"){
             for(i=0;i<res.data.result.length;i++){
               res.data.result[i]['attennum'] = (<span style={{cursor:'pointer'}} onClick={__this.getAtten.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['attennum']}</span>)
@@ -107,7 +108,6 @@ export default class Market extends Component {
               res.data.result[i]['T-SHIRT_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
 
               res.data.result[i]['notemessagenum'] = (<span style={{cursor:'pointer'}} onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
-              console.log(value.split('-')[1]);
               console.log(res.data.result[i] === value.split('-')[1]);
             }
 
