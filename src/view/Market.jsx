@@ -107,11 +107,12 @@ export default class Market extends Component {
               res.data.result[i]['T-SHIRT_num'] = (<span style={{cursor:'pointer'}} onClick={__this.getDeal.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
 
               res.data.result[i]['notemessagenum'] = (<span style={{cursor:'pointer'}} onClick={__this.getNotes.bind(__this,res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
+              console.log(value.split('-')[1]);
+              console.log(res.data.result[i] === value.split('-')[1]);
             }
 
             __this.setState({
               data : res.data.result.filter(function (e) {
-                console.log(value.split('-')[1],e.universityname == value.split('-')[1]);
                 return e.universityname == value.split('-')[1]
               })
             })
