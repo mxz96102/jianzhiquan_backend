@@ -66,7 +66,7 @@ export default class User extends Component {
   onSchool(value){
     let __this = this
 
-    if(value === "0-全部"){
+    if(value.split('-')[0] == '0'){
       axios.get("/user/allUser")
         .then(function (res) {
           if(res.data.msg === "SUCCESS"){
@@ -89,7 +89,7 @@ export default class User extends Component {
   }
 
   onSearch(value){
-    let __this = this
+    let __this = this,i;
 
     if(value === ""){
       axios.get("/user/allUser")

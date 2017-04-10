@@ -73,9 +73,9 @@ export default class Market extends Component {
   }
 
   onSchool(value){
-    let __this = this
+    let __this = this,i;
 
-    if(value === "0-全部"){
+    if(value.split('-')[0] == '0'){
       axios.get("/market/allMarket")
         .then(function (res) {
           for(i=0;i<res.data.result.length;i++){
