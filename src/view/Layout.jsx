@@ -66,7 +66,7 @@ export default class Layout extends React.Component {
       .then((res)=>{
         console.log(res);
         if(res.data.code === '401'){
-          //location.hash = '/'
+          location.hash = '/'
         }
       })
       .catch(function (error) {
@@ -82,7 +82,7 @@ export default class Layout extends React.Component {
 					<aside className={style.ant_layout_sider}>
             <div className={style.ant_layout_logo}><span style={{color:"white"}}>兼职圈</span></div>
 						<Menu mode="inline" theme="dark" onClick={this.handleClick.bind(this)}
-									defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']}>
+									>
 
 							<SubMenu key="sub1" title={<span><Icon type="right" /><span>学校</span></span>}>
 								<Menu.Item onClick={()=> hash} key="1">管理学校</Menu.Item>

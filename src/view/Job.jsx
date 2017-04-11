@@ -70,7 +70,7 @@ export default class Job extends Component {
   onSchool(value){
     let __this = this,i;
 
-    if(value.split('-')[0] == '0'){
+    if(value.split('-')[0] === '0'){
       axios.get("/job/getAllJob")
         .then(function (res) {
           if(res.data.msg === "SUCCESS"){
@@ -104,6 +104,7 @@ export default class Job extends Component {
             })
           }
         })
+
   }
 
   componentDidMount(){
@@ -127,7 +128,7 @@ export default class Job extends Component {
 
     axios.get("/job/getAllJob")
       .then(function (res) {
-        if(res.data.msg === "SUCCESS"){
+        if(res.data.msg === "SUCCESS"&&res.data.result.length>0){
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].fromtime = (new Date(res.data.result[i].fromtime)).toLocaleDateString()
             res.data.result[i].untiltime = (new Date(res.data.result[i].untiltime)).toLocaleDateString()
