@@ -125,7 +125,7 @@ export default class Market extends Component {
             }
 
             __this.setState({
-              data: res.data.result.filter( (e)=> (e.universityname + '') === value.split('-')[1])
+              data: res.data.result.filter( (e)=> (e.universityname).includes(value.split('-')[1]))
             })
           }
         })
