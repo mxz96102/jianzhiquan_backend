@@ -60,6 +60,7 @@ export default class Colleage extends Component {
                           <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
                         </Button.Group>
                       </Form.Item>)
+                    res.data.result[i].delete = (<Button size="small" onClick={__this.delColleage.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
                   }
                   __this.setState({
                     data : res.data.result
@@ -78,6 +79,30 @@ export default class Colleage extends Component {
         if(res.data.msg === "SUCCESS"){
           message.success('添加成功');
           content.value = ''
+          axios.get("/uni/allColleage?uniid="+__this.props.uniid)
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                for(i=0;i<res.data.result.length;i++){
+                  res.data.result[i].man = '';
+
+                  for(j=0;j<res.data.result.user.length;j++){
+                    res.data.result[i].man += res.data.result.user[j].username+"|"
+                  }
+                  res.data.result[i].add = (
+                    <Form.Item>
+                      <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                      <Button.Group size="small">
+                        <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                        <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                      </Button.Group>
+                    </Form.Item>)
+                  res.data.result[i].delete = (<Button size="small" onClick={__this.delColleage.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+                }
+                __this.setState({
+                  data : res.data.result
+                })
+              }
+            })
         }
       })
   }
@@ -89,6 +114,30 @@ export default class Colleage extends Component {
         if(res.data.msg === "SUCCESS"){
           message.success('删除成功');
           content.value = ''
+          axios.get("/uni/allColleage?uniid="+__this.props.uniid)
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                for(i=0;i<res.data.result.length;i++){
+                  res.data.result[i].man = '';
+
+                  for(j=0;j<res.data.result.user.length;j++){
+                    res.data.result[i].man += res.data.result.user[j].username+"|"
+                  }
+                  res.data.result[i].add = (
+                    <Form.Item>
+                      <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                      <Button.Group size="small">
+                        <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                        <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                      </Button.Group>
+                    </Form.Item>)
+                  res.data.result[i].delete = (<Button size="small" onClick={__this.delColleage.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+                }
+                __this.setState({
+                  data : res.data.result
+                })
+              }
+            })
         }
       })
   }
@@ -98,6 +147,30 @@ export default class Colleage extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('删除成功');
+          axios.get("/uni/allColleage?uniid="+__this.props.uniid)
+            .then(function (res) {
+              if(res.data.msg === "SUCCESS"){
+                for(i=0;i<res.data.result.length;i++){
+                  res.data.result[i].man = '';
+
+                  for(j=0;j<res.data.result.user.length;j++){
+                    res.data.result[i].man += res.data.result.user[j].username+"|"
+                  }
+                  res.data.result[i].add = (
+                    <Form.Item>
+                      <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
+                      <Button.Group size="small">
+                        <Button  onClick={__this.addUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">添加</Button>
+                        <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">删除</Button>
+                      </Button.Group>
+                    </Form.Item>)
+                  res.data.result[i].delete = (<Button size="small" onClick={__this.delColleage.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+                }
+                __this.setState({
+                  data : res.data.result
+                })
+              }
+            })
         }
       })
   }

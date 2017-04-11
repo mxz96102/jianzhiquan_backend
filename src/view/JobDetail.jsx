@@ -17,6 +17,10 @@ export default class JobDetail extends Component {
         dataIndex: 'phonenum',
         key: 'phonenum',
       }, {
+        title: '累计发放工资',
+        dataIndex: 'salary',
+        key: 'salary',
+      }, {
         title: '处理',
         dataIndex: 'operation',
         key: 'operation',

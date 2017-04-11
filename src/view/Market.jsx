@@ -100,7 +100,8 @@ export default class Market extends Component {
             }
 
             __this.setState({
-              data: res.data.result
+              data: res.data.result,
+              colleage: []
             })
           }
         })
@@ -126,12 +127,30 @@ export default class Market extends Component {
                                                             onClick={__this.getNotes.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
             }
 
+            axios.get("/uni/allColleage?uniid="+value.split('-')[0])
+              .then((res)=>{
+                let j,data = res.data.result;
+
+                if(res.data.msg === "SUCCESS"){
+                  __this.state.colleage= [];
+                  for(j=0;j<data.length;j++){
+                    __this.state.colleage.push(<Select.Option key={data[j].id}>{data[j].id+"-"+data[j].colleagename}</Select.Option>)
+                  }
+
+                  __this.setState({
+                    colleage : __this.state.colleage
+                  })
+                }
+              });
+
             __this.setState({
               data: res.data.result,
               uniid: value.split('-')[0]
             })
           }
         })
+
+
     }
   }
 
@@ -244,6 +263,10 @@ export default class Market extends Component {
         <Select style={{minWidth:"10rem"}} onSelect={this.onSchool.bind(this)} >
           <Select.Option key={0}>0-全部</Select.Option>
           {this.state.school}
+        </Select>
+        学院：
+        <Select style={{minWidth:"10rem"}} onSelect={this.onColleage.bind(this)} >
+          {this.state.colleage}
         </Select>
         <Table style={{width:"70vw"}} dataSource={this.state.data} columns={this.state.columns} />
       </div>

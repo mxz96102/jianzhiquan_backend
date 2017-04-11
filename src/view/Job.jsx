@@ -87,7 +87,7 @@ export default class Job extends Component {
             })
           }
         })
-    }else
+    }else{
       axios.get("/job/getAllJob?uniid="+value.split('-')[0])
         .then(function (res) {
           if(res.data.msg === "SUCCESS"){
@@ -104,7 +104,7 @@ export default class Job extends Component {
             })
           }
         })
-
+    }
   }
 
   componentDidMount(){

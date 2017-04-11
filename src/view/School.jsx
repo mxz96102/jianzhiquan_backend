@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Modal, Button } from 'antd'
+import{ Table, Modal, Button, message } from 'antd'
 import axios from "../axios";
 import Dorm from './Dorm'
 import Colleage from './Colleage'

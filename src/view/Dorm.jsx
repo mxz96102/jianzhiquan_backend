@@ -37,6 +37,9 @@ export default class Dorm extends Component {
             content.value = "";
             axios.get("/uni/allDorm?uniid="+__this.props.uniid)
               .then(function (res) {
+                for(i=0;i<res.data.result.length;i++){
+                  res.data.result[i].delete = (<Button size="small" onClick={__this.delDorm.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+                }
                 if(res.data.msg === "SUCCESS"){
                   __this.setState({
                     data : res.data.result
@@ -49,10 +52,21 @@ export default class Dorm extends Component {
   }
 
   delDorm(id){
-    axios.get('/uni/deleteDrom?id='+id)
+    axios.get('/uni/deleteDorm?id='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('删除成功');
+          axios.get("/uni/allDorm?uniid="+__this.props.uniid)
+            .then(function (res) {
+              for(i=0;i<res.data.result.length;i++){
+                res.data.result[i].delete = (<Button size="small" onClick={__this.delDorm.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+              }
+              if(res.data.msg === "SUCCESS"){
+                __this.setState({
+                  data : res.data.result
+                })
+              }
+            })
         }
       })
   }
