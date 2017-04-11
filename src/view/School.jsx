@@ -30,7 +30,11 @@ export default class School extends Component {
         title: '宿舍栋数',
         dataIndex: 'buildnum',
         key: 'buildnum',
-      },],
+      }, {
+        title: '删除',
+        dataIndex: 'delete',
+        key: 'delete',
+      }],
       data:[
         {uniname:"Loading"}
       ]
@@ -49,6 +53,15 @@ export default class School extends Component {
     })
   }
 
+  delSchool(id){
+    axios.get('/uni/deleteUniversity?id='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('删除成功');
+        }
+      })
+  }
+
   componentDidMount(){
     let __this = this,i;
 
@@ -58,6 +71,7 @@ export default class School extends Component {
           for(i=0;i<res.data.result.length;i++){
             res.data.result[i].buildnum = (<span style={{cursor:'pointer'}} onClick={__this.buildArrange.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].buildnum}</span>)
             res.data.result[i].colleagenum = (<span style={{cursor:'pointer'}} onClick={__this.colleageArrange.bind(__this,parseInt(res.data.result[i].id))}>{res.data.result[i].colleagenum}</span>)
+            res.data.result[i].delete = (<Button size="small" onClick={__this.delSchool.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
           }
 
           __this.setState({

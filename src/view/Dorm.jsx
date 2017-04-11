@@ -16,6 +16,10 @@ export default class Dorm extends Component {
         title: '楼栋名称',
         dataIndex: 'dormname',
         key: 'dormname',
+      }, {
+        title: '删除',
+        dataIndex: 'delete',
+        key: 'delete',
       }],
       data:[
         {buildname:"Loading"}
@@ -44,12 +48,24 @@ export default class Dorm extends Component {
     }
   }
 
+  delDorm(id){
+    axios.get('/uni/deleteDrom?id='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('删除成功');
+        }
+      })
+  }
+
   componentDidMount(){
-    let __this = this;
+    let __this = this,i;
 
     axios.get("/uni/allDorm?uniid="+this.props.uniid)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
+          for(i=0;i<res.data.result.length;i++){
+            res.data.result[i].delete = (<Button size="small" onClick={__this.delDorm.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
+          }
           __this.setState({
             data : res.data.result
           })

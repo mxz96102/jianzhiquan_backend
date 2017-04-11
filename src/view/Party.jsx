@@ -91,7 +91,7 @@ export default class Market extends Component {
           }
         })
     }else
-      axios.get("/party/allParty")
+      axios.get("/party/allParty?uniid="+value.split('-')[0])
         .then(function (res) {
           if(res.data.msg === "SUCCESS"){
             for(i=0;i<res.data.result.length;i++){
@@ -103,9 +103,7 @@ export default class Market extends Component {
             }
 
             __this.setState({
-              data : res.data.result.filter(function (e) {
-                return e.uniname == value.split('-')[1]
-              })
+              data : res.data.result
             })
           }
         })

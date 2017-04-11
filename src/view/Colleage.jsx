@@ -24,6 +24,10 @@ export default class Colleage extends Component {
         title: '添加授权',
         dataIndex: 'add',
         key: 'add',
+      }, {
+        title: '删除',
+        dataIndex: 'delete',
+        key: 'delete',
       }],
       data:[
         {name:"Loading"}
@@ -89,6 +93,15 @@ export default class Colleage extends Component {
       })
   }
 
+  delColleage(id){
+    axios.get('/uni/deleteColleage?id='+id)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('删除成功');
+        }
+      })
+  }
+
   componentDidMount(){
     let __this = this,i,j;
 
@@ -109,6 +122,7 @@ export default class Colleage extends Component {
                   <Button onClick={__this.delUser.bind(__this,("phone"+res.data.result[i].id),parseInt(res.data.result[i].id))} size="small">解除</Button>
                 </Button.Group>
               </Form.Item>)
+            res.data.result[i].delete = (<Button size="small" onClick={__this.delColleage.bind(__this,parseInt(res.data.result[i].id))}>删除</Button>)
           }
 
           __this.setState({

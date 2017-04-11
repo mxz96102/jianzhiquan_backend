@@ -88,7 +88,7 @@ export default class Job extends Component {
           }
         })
     }else
-      axios.get("/job/getAllJob")
+      axios.get("/job/getAllJob?uniid="+value.split('-')[0])
         .then(function (res) {
           if(res.data.msg === "SUCCESS"){
             for(i=0;i<res.data.result.length;i++){
@@ -100,9 +100,7 @@ export default class Job extends Component {
             }
 
             __this.setState({
-              data : res.data.result.filter(function (e) {
-                return e.uniid == value.split('-')[0]
-              })
+              data : res.data.result
             })
           }
         })
