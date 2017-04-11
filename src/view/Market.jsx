@@ -78,33 +78,6 @@ export default class Market extends Component {
     if(value.split('-')[0] === '0'){
       axios.get("/market/allMarket")
         .then(function (res) {
-          if (res.data.msg === "SUCCESS") {
-            console.log(value.split('-')[1]);
-            for (i = 0; i < res.data.result.length; i++) {
-              res.data.result[i]['attennum'] = (<span style={{cursor: 'pointer'}}
-                                                      onClick={__this.getAtten.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['attennum']}</span>)
-
-              res.data.result[i]['PAPER_num'] = (<span style={{cursor: 'pointer'}}
-                                                       onClick={__this.getDeal.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['PAPER_num']}</span>)
-              res.data.result[i]['D_SCHOOL_num'] = (<span style={{cursor: 'pointer'}}
-                                                          onClick={__this.getDeal.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['D_SCHOOL_num']}</span>)
-              res.data.result[i]['MEETING_num'] = (<span style={{cursor: 'pointer'}}
-                                                         onClick={__this.getDeal.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['MEETING_num']}</span>)
-              res.data.result[i]['T-SHIRT_num'] = (<span style={{cursor: 'pointer'}}
-                                                         onClick={__this.getDeal.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['T-SHIRT_num']}</span>)
-
-              res.data.result[i]['notemessagenum'] = (<span style={{cursor: 'pointer'}}
-                                                            onClick={__this.getNotes.bind(__this, res.data.result[i]['id'])}>{res.data.result[i]['notemessagenum']}</span>)
-            }
-
-            __this.setState({
-              data: res.data.result
-            })
-          }
-        })
-    }else{
-      axios.get("/market/allMarket")
-        .then(function (res) {
           if(res.data.msg === "SUCCESS") {
             console.log(value.split('-')[1]);
             for (i = 0; i < res.data.result.length; i++) {
@@ -129,6 +102,10 @@ export default class Market extends Component {
             })
           }
         })
+    }else{
+      console.log("!");
+      console.log(value.split('-')[1]);
+
     }
   }
 
