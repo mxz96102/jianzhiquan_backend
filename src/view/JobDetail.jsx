@@ -54,6 +54,15 @@ export default class JobDetail extends Component {
       })
   }
 
+  closeJob(userid){
+    axios.get('/job/closure?jobid='+this.props.jobid+'&userid='+userid)
+      .then(function (res) {
+        if(res.data.msg === "SUCCESS"){
+          message.success('结束成功');
+        }
+      })
+  }
+
 /**/
 
   componentDidMount(){
@@ -80,7 +89,7 @@ export default class JobDetail extends Component {
           let i;
 
           for(i=0;i<res.data.result.length;i++){
-            res.data.result[i].operation = (<Form.Item><Input style={{ width: '8rem' }} placeholder="工资数额（整数）" size="small" name={"salary"+parseInt(res.data.result[i].id)}/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button></Form.Item>)
+            res.data.result[i].operation = (<Form.Item><Input style={{ width: '8rem' }} placeholder="工资数额（整数）" size="small" name={"salary"+parseInt(res.data.result[i].id)}/><Button onClick={__this.salary.bind(__this,parseInt(res.data.result[i].id))} size="small">发工资</Button><Button onClick={__this.closeJob.bind(__this,parseInt(res.data.result[i].id))} size="small">结束工作</Button></Form.Item>)
           }
 
           __this.setState({
