@@ -68,7 +68,7 @@ export default class Job extends Component {
   }
 
   onSchool(value){
-    let __this = this,i;
+    let __this = this,i,states = {WANTING:"招募中",WORKING:"兼职中",ENDED:"已结束"};
 
     if(value.split('-')[0] === '0'){
       axios.get("/job/getAllJob")
