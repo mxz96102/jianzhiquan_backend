@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {findDOMNode} from 'react-dom'
-import{ Table, Form, Input, Button } from 'antd'
+import{ Table, Form, Input, Button, message } from 'antd'
 import axios from "../axios";
 
 
@@ -52,6 +52,7 @@ export default class Dorm extends Component {
   }
 
   delDorm(id){
+    let __this = this;
     axios.get('/uni/deleteDorm?id='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){

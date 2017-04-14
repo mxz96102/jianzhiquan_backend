@@ -143,6 +143,7 @@ export default class Colleage extends Component {
   }
 
   delColleage(id){
+    let __this = this
     axios.get('/uni/deleteColleage?id='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
