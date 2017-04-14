@@ -48,10 +48,10 @@ export default class Colleage extends Component {
                 if(res.data.msg === "SUCCESS"){
                   for(i=0;i<res.data.result.length;i++){
                     res.data.result[i].man = '';
-
-                    for(j=0;j<res.data.result.user.length;j++){
-                      res.data.result[i].man += res.data.result.user[j].username+"|"
-                    }
+                    if(!!res.data.result.user)
+                      for(j=0;j<res.data.result.user.length;j++){
+                        res.data.result[i].man += res.data.result.user[j].username+"|"
+                      }
                     res.data.result[i].add = (
                       <Form.Item>
                         <Input placeholder="手机号码" size="small" name={"phone"+res.data.result[i].id}/>
@@ -73,12 +73,12 @@ export default class Colleage extends Component {
   }
 
   addUser(name,id){
-    let content = document.getElementsByName(name)[0],__this = this;
+    let content = document.getElementsByName(name)[0],__this = this,i;
     axios.get('/uni/createAuthorizedUser?phonenum='+content.value+'&colleageid='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('添加成功');
-          content.value = ''
+          content.value = '';
           axios.get("/uni/allColleage?uniid="+__this.props.uniid)
             .then(function (res) {
               if(res.data.msg === "SUCCESS"){
@@ -108,7 +108,7 @@ export default class Colleage extends Component {
   }
 
   delUser(name,id){
-    let content = document.getElementsByName(name)[0],__this = this;
+    let content = document.getElementsByName(name)[0],__this = this,i;
     axios.get('/uni/deleteAuthorizedUser?phonenum='+content.value+'&colleageid='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
@@ -143,7 +143,7 @@ export default class Colleage extends Component {
   }
 
   delColleage(id){
-    let __this = this
+    let __this = this,i,j;
     axios.get('/uni/deleteColleage?id='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){

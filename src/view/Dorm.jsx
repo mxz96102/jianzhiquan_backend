@@ -28,7 +28,7 @@ export default class Dorm extends Component {
   }
 
   addDorm(){
-    let content = document.getElementsByName("unidorm")[0],__this = this;
+    let content = document.getElementsByName("unidorm")[0],__this = this,i;
 
     if(content.value.length > 0){
       axios.get('/uni/createDorm?dormname='+content.value+'&uniid='+this.props.uniid)
@@ -52,7 +52,7 @@ export default class Dorm extends Component {
   }
 
   delDorm(id){
-    let __this = this;
+    let __this = this,i;
     axios.get('/uni/deleteDorm?id='+id)
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
