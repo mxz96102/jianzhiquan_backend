@@ -45,9 +45,13 @@ export default class User extends Component {
         dataIndex: 'clazz',
         key: 'clazz',
       }, {
-        title: '楼栋',
+        title: '校区',
         dataIndex: 'dorm',
         key: 'dorm',
+      }, {
+        title: '宿舍',
+        dataIndex: 'area',
+        key: 'area',
       }, {
         title: '余额',
         dataIndex: 'balance',

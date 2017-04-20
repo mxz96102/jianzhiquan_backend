@@ -27,7 +27,7 @@ export default class School extends Component {
         dataIndex: 'colleagenum',
         key: 'colleagenum',
       }, {
-        title: '宿舍栋数',
+        title: '校区数',
         dataIndex: 'buildnum',
         key: 'buildnum',
       }, {

@@ -9,11 +9,11 @@ export default class Dorm extends Component {
     super();
     this.state={
       columns : [{
-        title: '楼栋序号',
+        title: '校区序号',
         dataIndex: 'id',
         key: 'id',
       }, {
-        title: '楼栋名称',
+        title: '校区名称',
         dataIndex: 'dormname',
         key: 'dormname',
       }, {
