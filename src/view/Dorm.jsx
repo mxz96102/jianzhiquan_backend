@@ -68,6 +68,8 @@ export default class Dorm extends Component {
                 })
               }
             })
+        }else if(res.data.code === "412"){
+          message.success('因有关联信息不能删除');
         }
       })
   }

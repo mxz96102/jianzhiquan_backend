@@ -58,6 +58,8 @@ export default class School extends Component {
       .then(function (res) {
         if(res.data.msg === "SUCCESS"){
           message.success('删除成功');
+        }else if(res.data.code === "412"){
+          message.success('因有关联信息不能删除');
         }
       })
   }
