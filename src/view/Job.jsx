@@ -39,8 +39,8 @@ export default class Job extends Component {
         key: 'workernummax',
       }, {
         title: '工资待遇',
-        dataIndex: 'salary',
-        key: 'salary',
+        dataIndex: 'description',
+        key: 'description',
       }, {
         title: '兼职情况',
         dataIndex: 'workernumnow',

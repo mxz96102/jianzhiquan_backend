@@ -20,7 +20,6 @@ export default class SchoolAdd extends Component {
     axios.get("/job/publish?jobname=" + getByName("jobname")+
       "&request="+getByName("request") +
       "&description="+getByName("description") +
-      "&salary="+getByName("salary") +
       "&workernummax="+getByName("workernummax") +
       "&fromtime="+this.state.start +
       "&untiltime="+this.state.end +
@@ -95,9 +94,6 @@ export default class SchoolAdd extends Component {
           <Form.Item label="兼职要求">
             <Input name="request" type="text" autosize required/>
           </Form.Item>
-          <Form.Item label="准确薪水">
-            <Input name="salary" type="text" autosize required/>
-          </Form.Item>
           <Form.Item label="开始时间">
             <DatePicker onChange={this.handleStart} format={dateFormat} required/>
           </Form.Item>
@@ -118,8 +114,8 @@ export default class SchoolAdd extends Component {
               {this.state.option}
             </Select>
           </Form.Item>
-          <Form.Item label="兼职描述">
-            <Input name="description" type="textarea" autosize={{ minRows: 2, maxRows: 6 }} required/>
+          <Form.Item label="工资待遇">
+            <Input name="description" type="text" autosize required/>
           </Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             提交
